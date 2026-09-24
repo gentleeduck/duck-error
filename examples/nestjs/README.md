@@ -1,6 +1,6 @@
 # duck-error NestJS example
 
-Minimal NestJS app showing `@gentleduck/errors` wired through an `ExceptionFilter`. Full
+Minimal NestJS app showing `@gentleduck/duck-error` wired through an `ExceptionFilter`. Full
 write-up: [gentleduck.org/duck-error/integrations/nestjs](https://gentleduck.org/duck-error/integrations/nestjs).
 
 ## Run

@@ -14,7 +14,7 @@
     "typescript": "^7.0.2"
   },
   "name": "duck-error",
-  "description": "Typed, registry-driven error classes for TypeScript: branded codes, secret-safe serialization, and framework adapters. Monorepo for @gentleduck/errors.",
+  "description": "Typed, registry-driven error classes for TypeScript: branded codes, secret-safe serialization, and framework adapters. Monorepo for @gentleduck/duck-error.",
   "author": "gentleduck contributors",
   "license": "MIT",
   "homepage": "https://gentleduck.org/duck-error",

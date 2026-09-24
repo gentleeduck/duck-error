@@ -1,8 +1,8 @@
 {
   "$schema": "https://typedoc.org/schema.json",
   "name": "duck-error",
-  "entryPoints": ["../../packages/duck-errors/src/index.ts"],
-  "tsconfig": "../../packages/duck-errors/tsconfig.json",
+  "entryPoints": ["../../packages/duck-error/src/index.ts"],
+  "tsconfig": "../../packages/duck-error/tsconfig.json",
   "out": "content/docs/api/generated",
   "plugin": ["typedoc-plugin-markdown"],
   "readme": "none",

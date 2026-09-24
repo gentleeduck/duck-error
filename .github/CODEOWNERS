@@ -9,4 +9,4 @@
 /package.json                  @wildduck2
 
 # Core package.
-/packages/duck-errors/         @wildduck2
+/packages/duck-error/         @wildduck2

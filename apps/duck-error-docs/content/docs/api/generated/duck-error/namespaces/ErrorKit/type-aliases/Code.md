@@ -2,7 +2,7 @@
 
 > **Code**\<`R` *extends* [`Registry`](Registry.md)\> = keyof `R` & `string`
 
-Defined in: [kit.ts:7](https://github.com/gentleeduck/duck-error/blob/ac3a7b4fe00b2803c0b15bea5cb68867dfe4c4f3/packages/duck-errors/src/kit.ts#L7)
+Defined in: [kit.ts:7](https://github.com/gentleeduck/duck-error/blob/486c0f1feeff8b047b529aa51384324e1af9036c/packages/duck-error/src/kit.ts#L7)
 
 ## Type Parameters
 

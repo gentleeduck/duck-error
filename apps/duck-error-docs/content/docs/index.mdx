@@ -5,7 +5,7 @@ description: Typed, registry-driven error classes for TypeScript. Branded codes,
 
 ## Overview
 
-`@gentleduck/errors` builds one error class per subsystem from a plain object literal: a
+`@gentleduck/duck-error` builds one error class per subsystem from a plain object literal: a
 registry mapping string codes to HTTP status numbers. The class it returns is fully typed --
 which codes exist, what metadata each one carries, and whether metadata is required -- all
 inferred from the registry, with no separate type declaration to keep in sync.
@@ -23,11 +23,11 @@ inferred from the registry, with no separate type declaration to keep in sync.
     CLASS --> JSON["toJSON()\nsecret-safe response body"]`} />
 
 ```sh
-bun add @gentleduck/errors
+bun add @gentleduck/duck-error
 ```
 
 ```typescript
-import { createErrorKit, detail, fault } from '@gentleduck/errors'
+import { createErrorKit, detail, fault } from '@gentleduck/duck-error'
 
 const REGISTRY = {
   NOT_FOUND: 404,
@@ -60,7 +60,7 @@ class. Details: [Core concepts](/duck-error/core-concepts).
 
 ## Zero dependencies
 
-`packages/duck-errors` has no runtime dependencies. `typescript` is an optional peer, needed
+`packages/duck-error` has no runtime dependencies. `typescript` is an optional peer, needed
 only for the types. It runs anywhere JavaScript does -- server, browser, edge runtimes -- see
 [Browser and isomorphic usage](/duck-error/browser-and-isomorphic-usage).
 

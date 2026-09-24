@@ -37,13 +37,13 @@ reviews:
     - '!**/package-lock.json'
     - '!**/tmp/**'
   path_instructions:
-    - path: 'packages/duck-errors/src/**/*.ts'
+    - path: 'packages/duck-error/src/**/*.ts'
       instructions: |
         Core error kit. Zero runtime dependencies - never add one here.
         Secret redaction must fail closed (unknown/ambiguous keys get redacted,
         not passed through). Document every public type with a usage example.
         No any without justification.
-    - path: 'packages/duck-errors/src/**/__tests__/**/*.ts'
+    - path: 'packages/duck-error/src/**/__tests__/**/*.ts'
       instructions: |
         Tests. Cover the secret-stripping path (nested objects, arrays, depth
         cap, circular references) as thoroughly as the construction path.

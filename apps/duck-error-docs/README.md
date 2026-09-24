@@ -10,9 +10,9 @@ bun run docs:api          # from this directory
 bun run --cwd apps/duck-error-docs docs:api   # from the repo root
 ```
 
-Runs [TypeDoc](https://typedoc.org) + `typedoc-plugin-markdown` against `packages/duck-errors/src`
+Runs [TypeDoc](https://typedoc.org) + `typedoc-plugin-markdown` against `packages/duck-error/src`
 and writes plain `.md` files into `content/docs/api/`. Those files are generated output, not
-hand-edited — a wrong description means the JSDoc comment in `packages/duck-errors/src` is wrong,
+hand-edited — a wrong description means the JSDoc comment in `packages/duck-error/src` is wrong,
 not the generated file.
 
 ### Why `docs:api` sets `NODE_OPTIONS`

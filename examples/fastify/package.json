@@ -3,7 +3,7 @@
   "name": "duck-error-example-fastify",
   "private": true,
   "version": "0.0.0",
-  "description": "Runnable Fastify example wiring @gentleduck/errors through setErrorHandler.",
+  "description": "Runnable Fastify example wiring @gentleduck/duck-error through setErrorHandler.",
   "type": "module",
   "scripts": {
     "dev": "bun run --watch src/index.ts",
@@ -12,7 +12,7 @@
     "clean": "rimraf dist .cache .turbo node_modules"
   },
   "dependencies": {
-    "@gentleduck/errors": "workspace:*",
+    "@gentleduck/duck-error": "workspace:*",
     "fastify": "^5.7.0"
   },
   "devDependencies": {

@@ -1,11 +1,11 @@
 ---
 title: browser and isomorphic usage
-description: @gentleduck/errors has zero runtime dependencies and ships both ESM and CJS, so it runs in the browser, edge runtimes, and React Native — with one real gotcha on the client.
+description: @gentleduck/duck-error has zero runtime dependencies and ships both ESM and CJS, so it runs in the browser, edge runtimes, and React Native — with one real gotcha on the client.
 ---
 
 ## Where it runs
 
-`packages/duck-errors` has zero runtime dependencies and builds to both ESM (`dist/index.js`)
+`packages/duck-error` has zero runtime dependencies and builds to both ESM (`dist/index.js`)
 and CJS (`dist/index.cjs`) via `tsdown`. Nothing in the source touches Node built-ins (no `fs`,
 no `crypto`, no `process`), so the same package runs unmodified in:
 

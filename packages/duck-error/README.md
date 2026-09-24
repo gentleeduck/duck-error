@@ -1,4 +1,4 @@
-# @gentleduck/errors
+# @gentleduck/duck-error
 
 Typed, registry-driven error classes: branded codes, secret-safe `toJSON`, and a construct-or-throw
 kit. Framework-agnostic, zero runtime dependencies, ESM + CJS, works anywhere plain `Error` does
@@ -7,15 +7,15 @@ kit. Framework-agnostic, zero runtime dependencies, ESM + CJS, works anywhere pl
 ## Install
 
 ```bash
-npm install @gentleduck/errors
+npm install @gentleduck/duck-error
 # or
-bun add @gentleduck/errors
+bun add @gentleduck/duck-error
 ```
 
 ## Quick start
 
 ```typescript
-import { createErrorKit, detail, fault } from '@gentleduck/errors'
+import { createErrorKit, detail, fault } from '@gentleduck/duck-error'
 
 // A registry: each code maps to a status. `detail<M>(status)` says the code also
 // carries a `meta` of shape M; `fault(status)` marks a code a store/adapter can

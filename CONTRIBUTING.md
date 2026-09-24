@@ -47,7 +47,7 @@ bun run dev
 
 ## Working with Packages
 
-* Core package code lives under `packages/duck-errors`.
+* Core package code lives under `packages/duck-error`.
 * Framework integration examples live under `examples/`.
 * Use [Turborepo](https://turbo.build/) commands to build, test, and lint efficiently.
 
@@ -69,7 +69,7 @@ bun run dev
    * Use **TypeScript**.
    * Follow existing **Biome** rules.
    * Write clear, self-documenting code.
-   * `packages/duck-errors` stays zero-runtime-dependency - don't add one to make a change easier.
+   * `packages/duck-error` stays zero-runtime-dependency - don't add one to make a change easier.
 
 3. **Commit Messages**
    Follow [Conventional Commits](https://www.conventionalcommits.org/):

@@ -3,7 +3,7 @@
   "name": "duck-error-example-nestjs",
   "private": true,
   "version": "0.0.0",
-  "description": "Runnable NestJS example wiring @gentleduck/errors through an ExceptionFilter.",
+  "description": "Runnable NestJS example wiring @gentleduck/duck-error through an ExceptionFilter.",
   "scripts": {
     "dev": "nest start --watch",
     "build": "nest build",
@@ -11,7 +11,7 @@
     "clean": "rimraf dist .cache .turbo node_modules"
   },
   "dependencies": {
-    "@gentleduck/errors": "workspace:*",
+    "@gentleduck/duck-error": "workspace:*",
     "@nestjs/common": "^11.1.6",
     "@nestjs/core": "^11.1.6",
     "@nestjs/platform-express": "^11.1.6",
