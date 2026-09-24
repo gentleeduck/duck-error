@@ -4,7 +4,7 @@
 
 > **fault**(`status`: `number`): [`Fault`](../duck-error/namespaces/Brand/type-aliases/Fault.md)
 
-Defined in: [brand.ts:31](https://github.com/gentleeduck/duck-error/blob/486c0f1feeff8b047b529aa51384324e1af9036c/packages/duck-error/src/brand.ts#L31)
+Defined in: [brand.ts:73](https://github.com/gentleeduck/duck-error/blob/8189fd333e8bc6ffad92de40d5c2d651b7e5d1e6/packages/duck-error/src/brand.ts#L73)
 
 The same declaration as [detail](detail.md), for a code an adapter can answer with itself.
 
@@ -18,11 +18,20 @@ The same declaration as [detail](detail.md), for a code an adapter can answer wi
 
 [`Fault`](../duck-error/namespaces/Brand/type-aliases/Fault.md)
 
+### Example
+
+```ts
+const REGISTRY = {
+  INTERNAL: fault(500), // adapter-raisable, no meta
+  STORAGE_FAILED: fault<{ cause?: string }>(500), // adapter-raisable, with meta
+} as const satisfies Record<string, number>
+```
+
 ## Call Signature
 
 > **fault**\<`M` *extends* `object`\>(`status`: `number`): `number` & \{ `__carries`: `M`; \} & \{ `__fault`: `true`; \}
 
-Defined in: [brand.ts:32](https://github.com/gentleeduck/duck-error/blob/486c0f1feeff8b047b529aa51384324e1af9036c/packages/duck-error/src/brand.ts#L32)
+Defined in: [brand.ts:74](https://github.com/gentleeduck/duck-error/blob/8189fd333e8bc6ffad92de40d5c2d651b7e5d1e6/packages/duck-error/src/brand.ts#L74)
 
 The same declaration as [detail](detail.md), for a code an adapter can answer with itself.
 
@@ -43,3 +52,12 @@ The meta shape the code carries, when given.
 ### Returns
 
 `number` & \{ `__carries`: `M`; \} & \{ `__fault`: `true`; \}
+
+### Example
+
+```ts
+const REGISTRY = {
+  INTERNAL: fault(500), // adapter-raisable, no meta
+  STORAGE_FAILED: fault<{ cause?: string }>(500), // adapter-raisable, with meta
+} as const satisfies Record<string, number>
+```

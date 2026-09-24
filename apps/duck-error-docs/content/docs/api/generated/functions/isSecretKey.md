@@ -2,7 +2,7 @@
 
 > **isSecretKey**(`key`: `string`): `boolean`
 
-Defined in: [scrub.ts:7](https://github.com/gentleeduck/duck-error/blob/486c0f1feeff8b047b529aa51384324e1af9036c/packages/duck-error/src/scrub.ts#L7)
+Defined in: [scrub.ts:14](https://github.com/gentleeduck/duck-error/blob/8189fd333e8bc6ffad92de40d5c2d651b7e5d1e6/packages/duck-error/src/scrub.ts#L14)
 
 ## Parameters
 
@@ -13,3 +13,10 @@ Defined in: [scrub.ts:7](https://github.com/gentleeduck/duck-error/blob/486c0f1f
 ## Returns
 
 `boolean`
+
+## Example
+
+```ts
+isSecretKey('apiToken') // true — substring match, so it over-redacts rather than under-redacts
+isSecretKey('widgetId') // false
+```

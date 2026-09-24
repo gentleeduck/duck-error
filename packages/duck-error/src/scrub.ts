@@ -4,11 +4,25 @@ const SECRET_KEY =
 
 const DEPTH_CAP = 8
 
+/**
+ * @example
+ * ```ts
+ * isSecretKey('apiToken') // true — substring match, so it over-redacts rather than under-redacts
+ * isSecretKey('widgetId') // false
+ * ```
+ */
 export function isSecretKey(key: string): boolean {
   return SECRET_KEY.test(key)
 }
 
-/** Every secret-bearing key dropped, at any depth. Past the cap the subtree is truncated, not walked. */
+/**
+ * Every secret-bearing key dropped, at any depth. Past the cap the subtree is truncated, not walked.
+ * @example
+ * ```ts
+ * scrubMeta({ widgetId: 'w1', detail: { password: 'leak-me' } })
+ * // -> { widgetId: 'w1', detail: {} } — 'password' matches the secret pattern, 'detail' and 'widgetId' don't
+ * ```
+ */
 export function scrubMeta(meta: object, depth = 0): Record<string, unknown> {
   const safe: Record<string, unknown> = {}
   for (const [key, value] of Object.entries(meta)) {

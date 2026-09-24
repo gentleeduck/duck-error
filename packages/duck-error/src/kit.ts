@@ -6,19 +6,54 @@ export namespace ErrorKit {
 
   export type Code<R extends Registry> = keyof R & string
 
+  /**
+   * The meta shape a code carries, looked up straight from the registry's own value for it.
+   * @example
+   * ```ts
+   * type WidgetMeta = ErrorKit.Meta<typeof REGISTRY, 'WIDGET_NOT_FOUND'> // { widgetId: string }
+   * ```
+   */
   export type Meta<R extends Registry, C extends Code<R>> = Brand.MetaOf<R[C]>
 
   /** True when T has at least one non-optional key. */
   export type HasRequired<T> = { [K in keyof T]-?: undefined extends T[K] ? never : K }[keyof T]
 
+  /**
+   * Every code in the registry branded {@link fault} — the ones a store or adapter can raise itself, as opposed to only flow/validation logic.
+   * @example
+   * ```ts
+   * type StoreRaisable = ErrorKit.Faults<typeof REGISTRY> // 'STORAGE_FAILED' | 'INTERNAL'
+   * ```
+   */
   export type Faults<R extends Registry> = { [C in Code<R>]: R[C] extends Brand.Fault ? C : never }[Code<R>]
 
-  /** A code that needs nothing beyond itself. */
+  /**
+   * A code that needs nothing beyond itself.
+   * @example
+   * ```ts
+   * type NoMetaNeeded = ErrorKit.Bare<typeof REGISTRY> // every code declared with a plain number, no detail()/fault()<M>
+   * ```
+   */
   export type Bare<R extends Registry> = {
     [C in Code<R>]: [HasRequired<Meta<R, C>>] extends [never] ? C : never
   }[Code<R>]
 
-  /** No args for a bare code, else optional/required per Meta's required keys — gated on the value's own Carries brand, not on Meta, since a bare code's Meta resolves to `{}` which anything would satisfy. */
+  /**
+   * No args for a bare code, else optional/required per Meta's required keys — gated on the value's own Carries brand, not on Meta, since a bare code's Meta resolves to `{}` which anything would satisfy.
+   * @example
+   * ```ts
+   * const REGISTRY = {
+   *   TEST_BARE: 500, // Args -> []
+   *   TEST_DETAIL: detail<{ field: string }>(400), // Args -> [meta: { field: string }]
+   *   TEST_DETAIL_NO_ARG: detail(400), // no <M> given -> Args -> [] (behaves like bare)
+   * } as const satisfies Record<string, number>
+   *
+   * new TestError('TEST_BARE') // ok, no second argument
+   * // @ts-expect-error a code that carries something cannot be raised without it
+   * new TestError('TEST_DETAIL')
+   * new TestError('TEST_DETAIL', { field: 'x' }) // ok
+   * ```
+   */
   export type Args<R extends Registry, C extends Code<R>> =
     R[C] extends Brand.Carries<any>
       ? [HasRequired<Meta<R, C>>] extends [never]
@@ -27,7 +62,14 @@ export namespace ErrorKit {
       : []
 }
 
-/** The shape every kit's error instances have, independent of which kit built them. */
+/**
+ * The shape every kit's error instances have, independent of which kit built them.
+ * @example
+ * ```ts
+ * const err = kit.fail('WIDGET_NOT_FOUND', { widgetId: 'w1' })
+ * err.toJSON() // { ok: false, error: { code: 'WIDGET_NOT_FOUND', status: 404, widgetId: 'w1' } }
+ * ```
+ */
 export interface KitError<R extends ErrorKit.Registry, C extends ErrorKit.Code<R> = ErrorKit.Code<R>> extends Error {
   readonly code: C
   readonly status: number
@@ -50,13 +92,45 @@ export interface ErrorKit<R extends ErrorKit.Registry> {
   asError<C extends ErrorKit.Code<R>>(error: unknown, code: C, ...args: ErrorKit.Args<R, C>): KitError<R>
   /** {@link ErrorKit.asError}, thrown rather than returned. */
   rethrowError<C extends ErrorKit.Code<R>>(error: unknown, code: C, ...args: ErrorKit.Args<R, C>): never
-  /** Checked by property, not instanceof, so a duplicated copy of this package still matches; meta is checked too, since code alone could narrow to a meta that isn't actually there. */
+  /**
+   * Checked by property, not instanceof, so a duplicated copy of this package still matches; meta is checked too, since code alone could narrow to a meta that isn't actually there.
+   * @example
+   * ```ts
+   * try {
+   *   await widgets.get(id)
+   * } catch (err) {
+   *   if (kit.hasErrorCode(err, 'WIDGET_NOT_FOUND')) return res.status(404).json({ widgetId: err.meta.widgetId })
+   *   throw err
+   * }
+   * ```
+   */
   hasErrorCode<C extends ErrorKit.Code<R>>(err: unknown, code: C): err is Error & { readonly meta: ErrorKit.Meta<R, C> }
-  /** Reads `err.meta` at the shape `code` declares. Safe once the caller has confirmed `err.code === code`. */
+  /**
+   * Reads `err.meta` at the shape `code` declares. Safe once the caller has confirmed `err.code === code`.
+   * @example
+   * ```ts
+   * if (err.code === 'WIDGET_NOT_FOUND') kit.metaOf(err, 'WIDGET_NOT_FOUND').widgetId // typed, no cast
+   * ```
+   */
   metaOf<C extends ErrorKit.Code<R>>(err: KitError<R>, code: C): ErrorKit.Meta<R, C>
 }
 
-/** Each call declares its own class (never shared), so two kits' instances never satisfy each other's instanceof; name becomes both the runtime `.name` and the stack-trace identity. */
+/**
+ * Each call declares its own class (never shared), so two kits' instances never satisfy each other's instanceof; name becomes both the runtime `.name` and the stack-trace identity.
+ * @example
+ * ```ts
+ * const REGISTRY = {
+ *   WIDGET_NOT_FOUND: detail<{ widgetId: string }>(404),
+ *   STORAGE_FAILED: fault<{ cause?: string }>(500),
+ * } as const satisfies Record<string, number>
+ *
+ * const kit = createErrorKit('AppError', REGISTRY)
+ * export const AppError = kit.ErrorClass
+ *
+ * kit.throwError('WIDGET_NOT_FOUND', { widgetId: 'w1' })
+ * // -> AppError { code: 'WIDGET_NOT_FOUND', status: 404, meta: { widgetId: 'w1' } }
+ * ```
+ */
 export function createErrorKit<const R extends ErrorKit.Registry, Name extends string>(
   name: Name,
   registry: R,
