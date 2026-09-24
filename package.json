@@ -52,6 +52,7 @@
     "postinstall": "bun run lint:ws || true",
     "prepare": "husky",
     "check-types": "turbo run check-types",
+    "docs:api": "bun run --cwd apps/duck-error-docs docs:api",
     "scorecard": "bash scripts/scorecard.sh",
     "scorecard:local": "bash scripts/scorecard.sh --local"
   },

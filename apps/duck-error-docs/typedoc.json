@@ -1,0 +1,19 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "name": "duck-error",
+  "entryPoints": ["../../packages/duck-errors/src/index.ts"],
+  "tsconfig": "../../packages/duck-errors/tsconfig.json",
+  "out": "content/docs/api/generated",
+  "plugin": ["typedoc-plugin-markdown"],
+  "readme": "none",
+  "excludePrivate": true,
+  "excludeInternal": true,
+  "excludeExternals": true,
+  "githubPages": false,
+  "sourceLinkTemplate": "https://github.com/gentleeduck/duck-error/blob/{gitRevision}/{path}#L{line}",
+  "hidePageHeader": true,
+  "hideBreadcrumbs": true,
+  "expandObjects": true,
+  "expandParameters": true,
+  "useFirstParagraphOfCommentAsSummary": true
+}
