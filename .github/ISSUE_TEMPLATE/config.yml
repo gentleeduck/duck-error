@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://gentleduck.org/duck-error
+    about: Check the docs before opening an issue.
+  - name: Community Discussions
+    url: https://github.com/gentleeduck/duck-error/discussions
+    about: Ask questions, share ideas, or start a conversation.
+  - name: Security Reports
+    url: https://github.com/gentleeduck/duck-error/security/policy
+    about: Report security vulnerabilities responsibly.

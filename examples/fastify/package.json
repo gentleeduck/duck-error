@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "duck-error-example-fastify",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Runnable Fastify example wiring @gentleduck/errors through setErrorHandler.",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun run src/index.ts",
+    "check-types": "tsc -p tsconfig.json --noEmit --pretty false --skipLibCheck",
+    "clean": "rimraf dist .cache .turbo node_modules"
+  },
+  "dependencies": {
+    "@gentleduck/errors": "workspace:*",
+    "fastify": "^5.7.0"
+  },
+  "devDependencies": {
+    "@gentleduck/typescript-config": "workspace:*",
+    "@types/node": "^26.1.0",
+    "typescript": "catalog:"
+  }
+}

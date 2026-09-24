@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "duck-error-example-express",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Runnable Express example wiring @gentleduck/errors through a terminal error-handling middleware.",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun run src/index.ts",
+    "check-types": "tsc -p tsconfig.json --noEmit --pretty false --skipLibCheck",
+    "clean": "rimraf dist .cache .turbo node_modules"
+  },
+  "dependencies": {
+    "@gentleduck/errors": "workspace:*",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@gentleduck/typescript-config": "workspace:*",
+    "@types/express": "^5.0.5",
+    "@types/node": "^26.1.0",
+    "typescript": "catalog:"
+  }
+}

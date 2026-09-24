@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "author": "@gentleduck contributors",
+  "dependencies": {
+    "@gentleduck/typescript-config": "workspace:*",
+    "tsdown": "catalog:"
+  },
+  "description": "Shared tsdown build configuration for duck-error.",
+  "version": "0.0.1",
+  "keywords": [
+    "tsdown",
+    "tsdown-config"
+  ],
+  "license": "MIT",
+  "main": "index.mjs",
+  "name": "@gentleduck/tsdown-config",
+  "homepage": "https://gentleduck.org/duck-error",
+  "bugs": {
+    "url": "https://github.com/gentleeduck/duck-error/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gentleeduck/duck-error.git",
+    "directory": "tooling/tsdown"
+  },
+  "packageManager": "bun@1.3.5",
+  "private": true,
+  "scripts": {
+    "clean": "rimraf .cache .turbo node_modules",
+    "format": "biome format --write ./",
+    "lint": "biome lint --write ./"
+  },
+  "type": "module",
+  "types": "index.d.ts"
+}

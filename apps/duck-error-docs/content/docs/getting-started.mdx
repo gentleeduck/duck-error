@@ -1,0 +1,145 @@
+---
+title: getting started
+description: Install @gentleduck/errors and build your first error kit, from a one-code registry to a typed, secret-safe error class.
+---
+
+## Install
+
+```sh
+bun add @gentleduck/errors
+```
+
+```sh
+npm install @gentleduck/errors
+pnpm add @gentleduck/errors
+yarn add @gentleduck/errors
+```
+
+`typescript` is an optional peer dependency (`>=5.0.0`). The package has no runtime
+dependencies at all -- it works in plain JavaScript too, you simply lose the type inference
+described below.
+
+---
+
+## Step 1: a registry with one code
+
+Every kit starts from a plain object literal mapping string codes to HTTP status numbers.
+
+```typescript
+// errors.ts
+import { createErrorKit } from '@gentleduck/errors'
+
+const REGISTRY = {
+  NOT_FOUND: 404,
+} as const satisfies Record<string, number>
+
+const kit = createErrorKit('AppError', REGISTRY)
+
+export const AppError = kit.ErrorClass
+export const throwAppError = kit.throwError
+```
+
+```typescript
+throwAppError('NOT_FOUND')
+// Uncaught AppError: NOT_FOUND
+```
+
+`as const satisfies Record<string, number>` on the registry is not optional decoration --
+`as const` is what keeps each value a literal number type (rather than widening to `number`),
+which every later type in this walkthrough depends on. `satisfies` checks the values are all
+plain numbers without erasing those literal types the way an `: Record<string, number>`
+annotation would.
+
+## Step 2: a code that carries metadata
+
+`NOT_FOUND` above takes no arguments -- calling `throwAppError('NOT_FOUND', { anything: true })`
+is a compile error. Most real codes carry something. Wrap the status in `detail` and give it a
+type parameter:
+
+```typescript
+import { createErrorKit, detail } from '@gentleduck/errors'
+
+const REGISTRY = {
+  NOT_FOUND: 404,
+  RATE_LIMITED: detail<{ retryAfter: number }>(429),
+} as const satisfies Record<string, number>
+
+const kit = createErrorKit('AppError', REGISTRY)
+export const AppError = kit.ErrorClass
+export const throwAppError = kit.throwError
+```
+
+```typescript
+throwAppError('RATE_LIMITED', { retryAfter: 60 })
+// the second argument is now required, and its shape is checked:
+
+throwAppError('RATE_LIMITED')
+// Error: expected 1 argument, but got 0.
+
+throwAppError('RATE_LIMITED', { retryAfter: 'soon' })
+// Error: Type 'string' is not assignable to type 'number'.
+```
+
+## Step 3: a code an adapter can raise
+
+`fault` is the same as `detail`, for a code that represents your own storage/adapter layer
+failing rather than a caller mistake or a business rule. It behaves identically at runtime --
+the distinction exists so you can select on it later (see
+[Branded types](/duck-error/branded-types)).
+
+```typescript
+import { createErrorKit, detail, fault } from '@gentleduck/errors'
+
+const REGISTRY = {
+  NOT_FOUND: 404,
+  RATE_LIMITED: detail<{ retryAfter: number }>(429),
+  STORAGE_FAILED: fault<{ cause?: string }>(500),
+} as const satisfies Record<string, number>
+
+const kit = createErrorKit('AppError', REGISTRY)
+
+export const AppError = kit.ErrorClass
+export const throwAppError = kit.throwError
+export const asAppError = kit.asError
+export const hasAppErrorCode = kit.hasErrorCode
+```
+
+## Step 4: catching and responding
+
+```typescript
+try {
+  await handler(req)
+} catch (err) {
+  if (err instanceof AppError) {
+    res.status(err.status).json(err.toJSON())
+    return
+  }
+  // Not one of ours -- wrap it so callers downstream have one shape to handle.
+  const wrapped = asAppError(err, 'STORAGE_FAILED', { cause: String(err) })
+  res.status(wrapped.status).json(wrapped.toJSON())
+}
+```
+
+```json
+{
+  "ok": false,
+  "error": {
+    "code": "RATE_LIMITED",
+    "status": 429,
+    "retryAfter": 60
+  }
+}
+```
+
+Any key in `meta` that looks like a secret (`token`, `password`, `hash`, and more) is stripped
+before this JSON is produced -- see [Secret redaction](/duck-error/secret-redaction) for the
+exact rule.
+
+---
+
+## Where to go next
+
+- [Core concepts](/duck-error/core-concepts) -- the registry pattern, why one kit per subsystem, why the message is always the code
+- [Branded types](/duck-error/branded-types) -- how `detail`/`fault` drive the compiler, in depth
+- [API reference](/duck-error/api-reference) -- every export, every signature
+- A framework guide: [NestJS](/duck-error/integrations/nestjs), [Express](/duck-error/integrations/express), [Fastify](/duck-error/integrations/fastify), [Hono](/duck-error/integrations/hono), [Next.js](/duck-error/integrations/nextjs)

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "duck-error-example-nextjs",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Runnable Next.js example handling @gentleduck/errors in Route Handlers and a Server Action.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "check-types": "tsc -p tsconfig.json --noEmit --pretty false --skipLibCheck",
+    "clean": "rimraf dist .cache .turbo node_modules .next"
+  },
+  "dependencies": {
+    "@gentleduck/errors": "workspace:*",
+    "next": "^16.2.11",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@gentleduck/typescript-config": "workspace:*",
+    "@types/node": "^26.1.0",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "typescript": "catalog:"
+  }
+}

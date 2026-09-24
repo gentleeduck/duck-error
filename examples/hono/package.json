@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "duck-error-example-hono",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Runnable Hono example wiring @gentleduck/errors through app.onError.",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun run src/index.ts",
+    "check-types": "tsc -p tsconfig.json --noEmit --pretty false --skipLibCheck",
+    "clean": "rimraf dist .cache .turbo node_modules"
+  },
+  "dependencies": {
+    "@gentleduck/errors": "workspace:*",
+    "@hono/node-server": "^1.19.6",
+    "hono": "^4.12.34"
+  },
+  "devDependencies": {
+    "@gentleduck/typescript-config": "workspace:*",
+    "@types/node": "^26.1.0",
+    "typescript": "catalog:"
+  }
+}

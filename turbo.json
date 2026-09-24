@@ -1,0 +1,38 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "ui": "stream",
+  "tasks": {
+    "build": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["src/**", "package.json", "tsconfig*.json", "tsdown.config.*"],
+      "outputs": [".next/**", "dist/**", ".cache/tsbuildinfo.json"]
+    },
+    "check-types": {
+      "cache": true,
+      "dependsOn": ["^check-types"],
+      "inputs": ["src/**", "package.json", "tsconfig*.json"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "test": {
+      "cache": true,
+      "dependsOn": ["^test"],
+      "inputs": ["src/**", "package.json", "tsconfig*.json", "vitest.config.*", "test/**", "tests/**", "__tests__/**"]
+    },
+    "test:e2e": {
+      "cache": false,
+      "dependsOn": []
+    },
+    "format": {
+      "outputLogs": "new-only"
+    },
+    "lint": {
+      "dependsOn": ["^build"],
+      "inputs": ["src/**", "package.json", "biome.json", ".eslintrc*", "eslint.config.*"]
+    }
+  },
+  "remoteCache": { "enabled": false }
+}

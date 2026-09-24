@@ -1,0 +1,134 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+node_modules.root-owned
+.node_modules.root-owned/
+node_modules.bun-attempt.*/
+.pnp
+.pnp.js
+
+# testing
+coverage
+
+# next.js
+.next/
+**/.open-next/
+out/
+next-env.d.ts
+
+# nitro
+.nitro/
+.output/
+
+# expo
+.expo/
+expo-env.d.ts
+apps/expo/.gitignore
+apps/expo/ios
+apps/expo/android
+
+# production
+build
+# misc
+.DS_Store
+*.pem
+.vinxi
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# local env files
+.env
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+dist
+.cache
+dist.root-owned-backup.*
+
+# turbo
+.turbo
+.contentlayer
+tsconfig.tsbuildinfo
+__registry__
+
+
+certificates
+
+tailwind.config.ts
+**/.fuse_*
+node-compile-cache
+.node-compile-cache.root-owned/
+node-compile-cache.root-owned/
+*.root-owned-backup.*/
+.root-owned-backups.*/
+**/.backup-root-owned-modules*/
+**/.backup-root-owned-modules.*/
+**/.dist.root-owned.*/
+**/dist.root-owned.*/
+**/.turbo.root-owned*/
+**/.next.root-owned*/
+**/.registry-build/
+**/dist.prebun.*/
+**/.dist.prebun.*/
+**/tsconfig.tsbuildinfo
+
+# Logs
+logs
+*.log
+dev-debug.log
+# Dependency directories
+node_modules/
+# Environment variables
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+**/.fuse_hidden*
+# OS specific
+
+# Task files
+# tasks.json
+# tasks/
+audit-iam/
+audit-auth/
+
+.stryker-tmp/
+
+# Claude Code: everything under .claude is local state, at any depth.
+# Skills are the exception, they are shared so contributors get them from the
+# repo instead of needing them installed globally. Glob the contents rather
+# than the directory itself, git cannot re-include a path whose parent is
+# excluded.
+**/.claude/*
+!**/.claude/skills/
+
+# Superpowers plans/specs - local working docs, never committed (all packages)
+**/docs/superpowers/
+
+# Superpowers execution workspace: per-plan ledgers, briefs, review packages - scratch, never committed
+.superpowers/
+
+# local test credentials (never committed)
+.env.test
+**/.env.test
+
+# Syncthing conflict artifacts
+*.sync-conflict-*
+
+# Velite build artifact for the docs content. The docs app itself moved out
+# (6bf78c7a), leaving a 7.6MB prebuilt JSON checked in as the only copy of 20
+# pages of pre-rename API - unreviewable, and wrong. Never track it again.
+.velite/
+**/.velite/

@@ -1,0 +1,80 @@
+# https://docs.coderabbit.ai/guides/configure-coderabbit
+# Schema: https://coderabbit.ai/integrations/schema.v2.json
+language: en-US
+early_access: false
+tone_instructions: |
+  Terse, technical. Drop filler and hedging. Fragments OK.
+  Code blocks unchanged. Errors quoted exact. No AI slop phrases.
+
+reviews:
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  high_level_summary_placeholder: '@coderabbitai summary'
+  poem: false
+  review_status: true
+  collapse_walkthrough: false
+  changed_files_summary: true
+  sequence_diagrams: true
+  abort_on_close: true
+  auto_review:
+    enabled: true
+    drafts: false
+    base_branches:
+      - main
+  path_filters:
+    - '!**/node_modules/**'
+    - '!**/dist/**'
+    - '!**/build/**'
+    - '!**/.next/**'
+    - '!**/.turbo/**'
+    - '!**/.cache/**'
+    - '!**/coverage/**'
+    - '!**/__snapshots__/**'
+    - '!**/*.lock'
+    - '!**/bun.lock'
+    - '!**/pnpm-lock.yaml'
+    - '!**/package-lock.json'
+    - '!**/tmp/**'
+  path_instructions:
+    - path: 'packages/duck-errors/src/**/*.ts'
+      instructions: |
+        Core error kit. Zero runtime dependencies - never add one here.
+        Secret redaction must fail closed (unknown/ambiguous keys get redacted,
+        not passed through). Document every public type with a usage example.
+        No any without justification.
+    - path: 'packages/duck-errors/src/**/__tests__/**/*.ts'
+      instructions: |
+        Tests. Cover the secret-stripping path (nested objects, arrays, depth
+        cap, circular references) as thoroughly as the construction path.
+        expect.unreachable() and non-null assertions are OK in tests.
+    - path: 'examples/**/*.{ts,tsx}'
+      instructions: |
+        Framework integration example. Focus on showing the correct adapter
+        pattern for that framework's error-handling hook. Keep it minimal -
+        these are references, not full applications.
+  tools:
+    biome:
+      enabled: true
+    gitleaks:
+      enabled: true
+    semgrep:
+      enabled: true
+    actionlint:
+      enabled: true
+    yamllint:
+      enabled: true
+    markdownlint:
+      enabled: true
+
+chat:
+  auto_reply: true
+
+knowledge_base:
+  opt_out: false
+  learnings:
+    scope: auto
+  issues:
+    scope: auto
+  pull_requests:
+    scope: auto
