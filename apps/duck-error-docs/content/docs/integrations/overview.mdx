@@ -39,6 +39,10 @@ All five runnable in full under [`examples/`](https://github.com/gentleeduck/duc
 - **The status**: `err.status` (or `err.statusCode` — identical value, present for NestJS).
 - **The body**: `err.toJSON()`, already secret-scrubbed — see
   [Secret redaction](/duck-error/secret-redaction).
+- **The client**: whichever framework produced it, the response is the same plain JSON — no
+  `instanceof` survives the wire — see
+  [Browser and isomorphic usage](/duck-error/browser-and-isomorphic-usage) for how to consume it
+  from a `fetch` call.
 
 Nothing about the kit itself changes between frameworks. If you're adding a sixth framework not
 listed here, this three-step pattern is the whole of what you need to replicate — find that
