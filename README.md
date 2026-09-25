@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./public/logo-dark.svg" alt="@gentleduck/duck-error" width="120"/>
+</p>
+
 <h1 align="center">@gentleduck/duck-error</h1>
 
 <p align="center">

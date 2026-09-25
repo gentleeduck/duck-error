@@ -1,8 +1,27 @@
-# @gentleduck/duck-error
+<p align="center">
+  <img src="./public/logo-dark.svg" alt="@gentleduck/duck-error" width="120"/>
+</p>
 
-Typed, registry-driven error classes: branded codes, secret-safe `toJSON`, and a construct-or-throw
-kit. Framework-agnostic, zero runtime dependencies, ESM + CJS, works anywhere plain `Error` does
-(Node, Bun, Deno, browsers, edge runtimes).
+<h1 align="center">@gentleduck/duck-error</h1>
+
+<p align="center">
+  Typed, registry-driven error classes: branded codes, secret-safe <code>toJSON</code>, and a
+  construct-or-throw kit. Framework-agnostic, zero runtime dependencies, ESM + CJS.
+</p>
+
+<p align="center">
+  <a href="./LICENSE">MIT</a> -
+  <a href="./CHANGELOG.md">Changelog</a> -
+  <a href="https://gentleduck.org/duck-error">Docs</a>
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@gentleduck/duck-error"><img src="https://img.shields.io/npm/v/@gentleduck/duck-error.svg" alt="npm"/></a>
+  <a href="https://www.npmjs.com/package/@gentleduck/duck-error"><img src="https://img.shields.io/npm/dm/@gentleduck/duck-error.svg" alt="downloads"/></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/npm/l/@gentleduck/duck-error.svg" alt="MIT"/></a>
+</p>
+
+---
 
 ## Install
 
