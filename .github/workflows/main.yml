@@ -12,6 +12,7 @@ on:
       - '**/*.md'
       - '.github/**/*.md'
       - 'docs/**'
+  workflow_dispatch:
 
 permissions:
   contents: read
