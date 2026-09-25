@@ -5,10 +5,10 @@ const SECRET_KEY =
 const DEPTH_CAP = 8
 
 /**
- * True when a key name looks like it might hold a secret — checked against a fixed pattern, not a per-registry allowlist.
+ * True when a key name looks like it might hold a secret. Checked against a fixed pattern, not a per-registry allowlist.
  * @example
  * ```ts
- * isSecretKey('apiToken') // true — substring match, so it over-redacts rather than under-redacts
+ * isSecretKey('apiToken') // true: substring match, so it over-redacts rather than under-redacts
  * isSecretKey('widgetId') // false
  * ```
  */
@@ -21,7 +21,7 @@ export function isSecretKey(key: string): boolean {
  * @example
  * ```ts
  * scrubMeta({ widgetId: 'w1', detail: { password: 'leak-me' } })
- * // -> { widgetId: 'w1', detail: {} } — 'password' matches the secret pattern, 'detail' and 'widgetId' don't
+ * // -> { widgetId: 'w1', detail: {} }: 'password' matches the secret pattern, 'detail' and 'widgetId' don't
  * ```
  */
 export function scrubMeta(meta: object, depth = 0): Record<string, unknown> {

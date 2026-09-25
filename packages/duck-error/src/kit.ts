@@ -3,10 +3,10 @@ import { scrubMeta } from './scrub'
 
 /** Type-level helpers derived from a registry: which codes exist, what each one carries, and the args its constructor demands. */
 export namespace ErrorKit {
-  /** A plain object literal mapping codes to HTTP status numbers — the whole contract a kit is built from. */
+  /** A plain object literal mapping codes to HTTP status numbers, the whole contract a kit is built from. */
   export type Registry = Record<string, number>
 
-  /** Every key of a registry, narrowed to `string` — the set of codes a kit's methods accept. */
+  /** Every key of a registry, narrowed to `string`: the set of codes a kit's methods accept. */
   export type Code<R extends Registry> = keyof R & string
 
   /**
@@ -22,7 +22,7 @@ export namespace ErrorKit {
   export type HasRequired<T> = { [K in keyof T]-?: undefined extends T[K] ? never : K }[keyof T]
 
   /**
-   * Every code in the registry branded {@link fault} — the ones a store or adapter can raise itself, as opposed to only flow/validation logic.
+   * Every code in the registry branded {@link fault}: the ones a store or adapter can raise itself, as opposed to only flow/validation logic.
    * @example
    * ```ts
    * type StoreRaisable = ErrorKit.Faults<typeof REGISTRY> // 'STORAGE_FAILED' | 'INTERNAL'
@@ -42,7 +42,7 @@ export namespace ErrorKit {
   }[Code<R>]
 
   /**
-   * No args for a bare code, else optional/required per Meta's required keys — gated on the value's own Carries brand, not on Meta, since a bare code's Meta resolves to `{}` which anything would satisfy.
+   * No args for a bare code, else optional/required per Meta's required keys. Gated on the value's own Carries brand, not on Meta, since a bare code's Meta resolves to `{}` which anything would satisfy.
    * @example
    * ```ts
    * const REGISTRY = {
@@ -85,7 +85,7 @@ export interface KitError<R extends ErrorKit.Registry, C extends ErrorKit.Code<R
 
 /** What {@link createErrorKit} returns: the error class plus the construct/throw/narrow helpers built around it. */
 export interface ErrorKit<R extends ErrorKit.Registry> {
-  /** For instanceof checks or subclassing — see createErrorKit for why it's never shared across kits. */
+  /** For instanceof checks or subclassing. See createErrorKit for why it's never shared across kits. */
   readonly ErrorClass: new <C extends ErrorKit.Code<R> = ErrorKit.Code<R>>(
     code: C,
     ...args: ErrorKit.Args<R, C>
