@@ -2,7 +2,7 @@
 
 > **detail**\<`M` *extends* `object` = `never`\>(`status`: `number`): [`Carries`](../duck-error/namespaces/Brand/type-aliases/Carries.md)\<`M`\>
 
-Defined in: [brand.ts:58](https://github.com/gentleeduck/duck-error/blob/8189fd333e8bc6ffad92de40d5c2d651b7e5d1e6/packages/duck-error/src/brand.ts#L58)
+Defined in: [brand.ts:59](https://github.com/gentleeduck/duck-error/blob/9f780d12ee1ae6b18d178e0e8a92b97584f33b7b/packages/duck-error/src/brand.ts#L59)
 
 M can't be inferred (no parameter uses it), so it defaults to never, not object — object would silently accept any meta shape.
 

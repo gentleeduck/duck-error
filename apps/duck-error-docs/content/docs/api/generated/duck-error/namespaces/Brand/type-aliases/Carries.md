@@ -2,7 +2,7 @@
 
 > **Carries**\<`M` *extends* `object`\> = `number` & \{ `__carries`: `M`; \}
 
-Defined in: [brand.ts:17](https://github.com/gentleeduck/duck-error/blob/8189fd333e8bc6ffad92de40d5c2d651b7e5d1e6/packages/duck-error/src/brand.ts#L17)
+Defined in: [brand.ts:18](https://github.com/gentleeduck/duck-error/blob/9f780d12ee1ae6b18d178e0e8a92b97584f33b7b/packages/duck-error/src/brand.ts#L18)
 
 Required, not optional — optional is satisfied by any plain number; plain key, not unique symbol, to avoid TS4023 in a consumer's own build.
 
@@ -26,8 +26,9 @@ The meta shape the code carries.
 const REGISTRY = {
   WIDGET_NOT_FOUND: detail<{ widgetId: string }>(404),
 } as const satisfies Record<string, number>
+const { throwError } = createErrorKit('AppError', REGISTRY)
 
 // @ts-expect-error meta is required, not optional
-throwAppError('WIDGET_NOT_FOUND')
-throwAppError('WIDGET_NOT_FOUND', { widgetId: 'w1' }) // ok
+throwError('WIDGET_NOT_FOUND')
+throwError('WIDGET_NOT_FOUND', { widgetId: 'w1' }) // ok
 ```

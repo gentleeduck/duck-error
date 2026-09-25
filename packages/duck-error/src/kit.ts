@@ -47,6 +47,7 @@ export namespace ErrorKit {
    *   TEST_DETAIL: detail<{ field: string }>(400), // Args -> [meta: { field: string }]
    *   TEST_DETAIL_NO_ARG: detail(400), // no <M> given -> Args -> [] (behaves like bare)
    * } as const satisfies Record<string, number>
+   * const TestError = createErrorKit('TestError', REGISTRY).ErrorClass
    *
    * new TestError('TEST_BARE') // ok, no second argument
    * // @ts-expect-error a code that carries something cannot be raised without it

@@ -2,7 +2,7 @@
 
 > **Fault** = `number` & \{ `__fault`: `true`; \}
 
-Defined in: [brand.ts:31](https://github.com/gentleeduck/duck-error/blob/8189fd333e8bc6ffad92de40d5c2d651b7e5d1e6/packages/duck-error/src/brand.ts#L31)
+Defined in: [brand.ts:32](https://github.com/gentleeduck/duck-error/blob/9f780d12ee1ae6b18d178e0e8a92b97584f33b7b/packages/duck-error/src/brand.ts#L32)
 
 A status whose code a store/adapter can answer with, rather than one only flow or validation logic raises.
 

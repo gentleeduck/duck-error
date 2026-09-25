@@ -8,10 +8,11 @@ export namespace Brand {
    * const REGISTRY = {
    *   WIDGET_NOT_FOUND: detail<{ widgetId: string }>(404),
    * } as const satisfies Record<string, number>
+   * const { throwError } = createErrorKit('AppError', REGISTRY)
    *
    * // @ts-expect-error meta is required, not optional
-   * throwAppError('WIDGET_NOT_FOUND')
-   * throwAppError('WIDGET_NOT_FOUND', { widgetId: 'w1' }) // ok
+   * throwError('WIDGET_NOT_FOUND')
+   * throwError('WIDGET_NOT_FOUND', { widgetId: 'w1' }) // ok
    * ```
    */
   export type Carries<M extends object> = number & { readonly __carries: M }

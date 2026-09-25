@@ -2,7 +2,7 @@
 
 > **MetaOf**\<`S`\> = `S` *extends* [`Carries`](Carries.md)\<infer M\> ? `M` : `Record`\<`never`, `never`\>
 
-Defined in: [brand.ts:44](https://github.com/gentleeduck/duck-error/blob/8189fd333e8bc6ffad92de40d5c2d651b7e5d1e6/packages/duck-error/src/brand.ts#L44)
+Defined in: [brand.ts:45](https://github.com/gentleeduck/duck-error/blob/9f780d12ee1ae6b18d178e0e8a92b97584f33b7b/packages/duck-error/src/brand.ts#L45)
 
 What a status says its code hands back. A plain status says nothing, which is a meta with no keys.
 

@@ -4,7 +4,7 @@
 
 > **fault**(`status`: `number`): [`Fault`](../duck-error/namespaces/Brand/type-aliases/Fault.md)
 
-Defined in: [brand.ts:73](https://github.com/gentleeduck/duck-error/blob/8189fd333e8bc6ffad92de40d5c2d651b7e5d1e6/packages/duck-error/src/brand.ts#L73)
+Defined in: [brand.ts:74](https://github.com/gentleeduck/duck-error/blob/9f780d12ee1ae6b18d178e0e8a92b97584f33b7b/packages/duck-error/src/brand.ts#L74)
 
 The same declaration as [detail](detail.md), for a code an adapter can answer with itself.
 
@@ -31,7 +31,7 @@ const REGISTRY = {
 
 > **fault**\<`M` *extends* `object`\>(`status`: `number`): `number` & \{ `__carries`: `M`; \} & \{ `__fault`: `true`; \}
 
-Defined in: [brand.ts:74](https://github.com/gentleeduck/duck-error/blob/8189fd333e8bc6ffad92de40d5c2d651b7e5d1e6/packages/duck-error/src/brand.ts#L74)
+Defined in: [brand.ts:75](https://github.com/gentleeduck/duck-error/blob/9f780d12ee1ae6b18d178e0e8a92b97584f33b7b/packages/duck-error/src/brand.ts#L75)
 
 The same declaration as [detail](detail.md), for a code an adapter can answer with itself.
 

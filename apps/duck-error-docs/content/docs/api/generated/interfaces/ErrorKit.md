@@ -1,6 +1,6 @@
 # Interface: ErrorKit\<R *extends* [`Registry`](../duck-error/namespaces/ErrorKit/type-aliases/Registry.md)\>
 
-Defined in: [kit.ts:4](https://github.com/gentleeduck/duck-error/blob/8189fd333e8bc6ffad92de40d5c2d651b7e5d1e6/packages/duck-error/src/kit.ts#L4)
+Defined in: [kit.ts:4](https://github.com/gentleeduck/duck-error/blob/9f780d12ee1ae6b18d178e0e8a92b97584f33b7b/packages/duck-error/src/kit.ts#L4)
 
 ## Type Parameters
 
@@ -14,7 +14,7 @@ Defined in: [kit.ts:4](https://github.com/gentleeduck/duck-error/blob/8189fd333e
 
 > `readonly` **ErrorClass**: \<`C`\>(`code`: `C`, ...`args`: [`Args`](../duck-error/namespaces/ErrorKit/type-aliases/Args.md)\<`R`, `C`\>) => [`KitError`](KitError.md)\<`R`, `C`\>
 
-Defined in: [kit.ts:84](https://github.com/gentleeduck/duck-error/blob/8189fd333e8bc6ffad92de40d5c2d651b7e5d1e6/packages/duck-error/src/kit.ts#L84)
+Defined in: [kit.ts:85](https://github.com/gentleeduck/duck-error/blob/9f780d12ee1ae6b18d178e0e8a92b97584f33b7b/packages/duck-error/src/kit.ts#L85)
 
 For instanceof checks or subclassing — see createErrorKit for why it's never shared across kits.
 
@@ -38,7 +38,7 @@ For instanceof checks or subclassing — see createErrorKit for why it's never s
 
 > **asError**\<`C` *extends* `string`\>(`error`: `unknown`, `code`: `C`, ...`args`: [`Args`](../duck-error/namespaces/ErrorKit/type-aliases/Args.md)\<`R`, `C`\>): [`KitError`](KitError.md)\<`R`\>
 
-Defined in: [kit.ts:92](https://github.com/gentleeduck/duck-error/blob/8189fd333e8bc6ffad92de40d5c2d651b7e5d1e6/packages/duck-error/src/kit.ts#L92)
+Defined in: [kit.ts:93](https://github.com/gentleeduck/duck-error/blob/9f780d12ee1ae6b18d178e0e8a92b97584f33b7b/packages/duck-error/src/kit.ts#L93)
 
 An already-typed error as it stands; anything else wrapped under the fallback code with the original on `cause`.
 
@@ -72,7 +72,7 @@ An already-typed error as it stands; anything else wrapped under the fallback co
 
 > **fail**\<`C` *extends* `string`\>(`code`: `C`, ...`args`: [`Args`](../duck-error/namespaces/ErrorKit/type-aliases/Args.md)\<`R`, `C`\>): [`KitError`](KitError.md)\<`R`, `C`\>
 
-Defined in: [kit.ts:89](https://github.com/gentleeduck/duck-error/blob/8189fd333e8bc6ffad92de40d5c2d651b7e5d1e6/packages/duck-error/src/kit.ts#L89)
+Defined in: [kit.ts:90](https://github.com/gentleeduck/duck-error/blob/9f780d12ee1ae6b18d178e0e8a92b97584f33b7b/packages/duck-error/src/kit.ts#L90)
 
 Constructs and returns (never throws) a typed instance.
 
@@ -102,7 +102,7 @@ Constructs and returns (never throws) a typed instance.
 
 > **hasErrorCode**\<`C` *extends* `string`\>(`err`: `unknown`, `code`: `C`): `err is Error & { meta: MetaOf<R[C]> }`
 
-Defined in: [kit.ts:107](https://github.com/gentleeduck/duck-error/blob/8189fd333e8bc6ffad92de40d5c2d651b7e5d1e6/packages/duck-error/src/kit.ts#L107)
+Defined in: [kit.ts:108](https://github.com/gentleeduck/duck-error/blob/9f780d12ee1ae6b18d178e0e8a92b97584f33b7b/packages/duck-error/src/kit.ts#L108)
 
 Checked by property, not instanceof, so a duplicated copy of this package still matches; meta is checked too, since code alone could narrow to a meta that isn't actually there.
 
@@ -143,7 +143,7 @@ try {
 
 > **metaOf**\<`C` *extends* `string`\>(`err`: [`KitError`](KitError.md)\<`R`\>, `code`: `C`): [`MetaOf`](../duck-error/namespaces/Brand/type-aliases/MetaOf.md)\<`R`\[`C`\]\>
 
-Defined in: [kit.ts:115](https://github.com/gentleeduck/duck-error/blob/8189fd333e8bc6ffad92de40d5c2d651b7e5d1e6/packages/duck-error/src/kit.ts#L115)
+Defined in: [kit.ts:116](https://github.com/gentleeduck/duck-error/blob/9f780d12ee1ae6b18d178e0e8a92b97584f33b7b/packages/duck-error/src/kit.ts#L116)
 
 Reads `err.meta` at the shape `code` declares. Safe once the caller has confirmed `err.code === code`.
 
@@ -179,7 +179,7 @@ if (err.code === 'WIDGET_NOT_FOUND') kit.metaOf(err, 'WIDGET_NOT_FOUND').widgetI
 
 > **rethrowError**\<`C` *extends* `string`\>(`error`: `unknown`, `code`: `C`, ...`args`: [`Args`](../duck-error/namespaces/ErrorKit/type-aliases/Args.md)\<`R`, `C`\>): `never`
 
-Defined in: [kit.ts:94](https://github.com/gentleeduck/duck-error/blob/8189fd333e8bc6ffad92de40d5c2d651b7e5d1e6/packages/duck-error/src/kit.ts#L94)
+Defined in: [kit.ts:95](https://github.com/gentleeduck/duck-error/blob/9f780d12ee1ae6b18d178e0e8a92b97584f33b7b/packages/duck-error/src/kit.ts#L95)
 
 [ErrorKit.asError](#aserror), thrown rather than returned.
 
@@ -213,7 +213,7 @@ Defined in: [kit.ts:94](https://github.com/gentleeduck/duck-error/blob/8189fd333
 
 > **throwError**\<`C` *extends* `string`\>(`code`: `C`, ...`args`: [`Args`](../duck-error/namespaces/ErrorKit/type-aliases/Args.md)\<`R`, `C`\>): `never`
 
-Defined in: [kit.ts:90](https://github.com/gentleeduck/duck-error/blob/8189fd333e8bc6ffad92de40d5c2d651b7e5d1e6/packages/duck-error/src/kit.ts#L90)
+Defined in: [kit.ts:91](https://github.com/gentleeduck/duck-error/blob/9f780d12ee1ae6b18d178e0e8a92b97584f33b7b/packages/duck-error/src/kit.ts#L91)
 
 #### Type Parameters
 
