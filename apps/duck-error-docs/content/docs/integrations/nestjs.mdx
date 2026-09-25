@@ -15,7 +15,7 @@ Full runnable example: [`examples/nestjs`](https://github.com/gentleeduck/duck-e
 ## Exception filter
 
 ```typescript
-import { ArgumentsHost, Catch, ExceptionFilter } from '@nestjs/common'
+import { type ArgumentsHost, Catch, type ExceptionFilter } from '@nestjs/common'
 import type { Response } from 'express'
 import { AppError } from './errors'
 
@@ -29,6 +29,7 @@ export class AppErrorFilter implements ExceptionFilter {
 ```
 
 ```typescript
+import 'reflect-metadata'
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { AppErrorFilter } from './app-error.filter'

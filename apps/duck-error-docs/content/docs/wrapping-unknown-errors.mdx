@@ -72,7 +72,7 @@ single normalized shape no matter what reached that point:
 
 ```typescript
 process.on('unhandledRejection', (reason) => {
-  const err = kit.asError(reason, 'INTERNAL')
+  const err = kit.asError(reason, 'STORAGE_FAILED')
   logger.fatal('unhandled rejection', { code: err.code, cause: err.cause })
 })
 ```

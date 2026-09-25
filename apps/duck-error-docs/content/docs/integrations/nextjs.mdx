@@ -16,13 +16,15 @@ Full runnable example: [`examples/nextjs`](https://github.com/gentleeduck/duck-e
 
 ```typescript
 // app/api/widgets/[id]/route.ts
-import { NextRequest, NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 import { asAppError, throwAppError } from '@/lib/errors'
 
-export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const widget = await db.widgets.findById(params.id)
-    if (!widget) throwAppError('NOT_FOUND', { resource: 'widget', id: params.id })
+    const { id } = await params
+    const widget = await db.widgets.findById(id)
+    if (!widget) throwAppError('NOT_FOUND', { resource: 'widget', id })
     return NextResponse.json(widget)
   } catch (err) {
     // STORAGE_FAILED here is this app's fallback fault code — see Error codes and status design

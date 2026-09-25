@@ -16,7 +16,7 @@ describe('widget lookup', () => {
     try {
       await findWidget('missing-id')
     } catch (err) {
-      expect((err as AppError).code).toBe('NOT_FOUND')
+      expect((err as InstanceType<typeof AppError>).code).toBe('NOT_FOUND')
     }
   })
 })
@@ -83,7 +83,7 @@ describe('rethrowAppError', () => {
       kit.rethrowError(original, 'STORAGE_FAILED', { cause: 'unused' })
     } catch (err) {
       expect(err).toBe(original) // same instance, not a new wrapper
-      expect((err as AppError).code).toBe('RATE_LIMITED')
+      expect((err as InstanceType<typeof AppError>).code).toBe('RATE_LIMITED')
     }
   })
 
@@ -93,8 +93,8 @@ describe('rethrowAppError', () => {
       kit.rethrowError(driverErr, 'STORAGE_FAILED', { cause: driverErr.message })
     } catch (err) {
       expect(err).toBeInstanceOf(AppError)
-      expect((err as AppError).code).toBe('STORAGE_FAILED')
-      expect((err as AppError).cause).toBe(driverErr)
+      expect((err as InstanceType<typeof AppError>).code).toBe('STORAGE_FAILED')
+      expect((err as InstanceType<typeof AppError>).cause).toBe(driverErr)
     }
   })
 
@@ -102,8 +102,8 @@ describe('rethrowAppError', () => {
     try {
       kit.rethrowError(new Error('postgres://user:pw@host/db'), 'STORAGE_FAILED', { cause: 'redacted' })
     } catch (err) {
-      expect((err as AppError).message).toBe('STORAGE_FAILED')
-      expect(JSON.stringify((err as AppError).toJSON())).not.toContain('postgres://')
+      expect((err as InstanceType<typeof AppError>).message).toBe('STORAGE_FAILED')
+      expect(JSON.stringify((err as InstanceType<typeof AppError>).toJSON())).not.toContain('postgres://')
     }
   })
 })

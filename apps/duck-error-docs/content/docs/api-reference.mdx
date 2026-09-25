@@ -42,6 +42,28 @@ The class itself, for `instanceof` checks or as a base to extend. Every instance
 | `message` | `string` | always equals `code` -- the message is not free text |
 | `name` | `string` | the kit's `name` argument |
 
+<Callout type="info" title="Using AppError as a type, not just a value">
+`export const AppError = kit.ErrorClass` alone only puts `AppError` in the *value* namespace --
+`err: AppError` or `AppError.Code` won't compile, since TypeScript looks in the *type* namespace
+for those. Every framework guide in these docs adds two more exports, via ordinary TypeScript
+declaration merging, to close that gap:
+
+```typescript
+export const AppError = kit.ErrorClass
+export type AppError<C extends AppError.Code = AppError.Code> = KitError<typeof REGISTRY, C>
+export namespace AppError {
+  export type Code = ErrorKit.Code<typeof REGISTRY>
+}
+```
+
+With this in place, `AppError` works as a value (`new AppError(...)`, `instanceof AppError`) and
+as a type (`err: AppError`, `code: AppError.Code`) at once. Snippets elsewhere in these docs that
+only export the plain value use `InstanceType<typeof AppError>` or `ErrorKit.Code<typeof
+REGISTRY>` instead, precisely because they don't assume this merge is in place -- reach for the
+merge in your own `errors.ts` once you want `AppError` usable both ways, the way every runnable
+example under [`examples/`](https://github.com/gentleeduck/duck-error/tree/main/examples) does.
+</Callout>
+
 ### `fail(code, meta?)`
 
 ```typescript
