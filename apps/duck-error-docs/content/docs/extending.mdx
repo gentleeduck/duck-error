@@ -35,7 +35,11 @@ response. Do this by decorating `toJSON()`'s output where you build the response
 modifying the kit:
 
 ```typescript
-function respond(res: Response, err: KitError<any>, requestId: string) {
+function respond(
+  res: { status(code: number): { json(body: unknown): void } },
+  err: KitError<any>,
+  requestId: string,
+) {
   const body = err.toJSON()
   res.status(err.status).json({ ...body, error: { ...body.error, requestId } })
 }

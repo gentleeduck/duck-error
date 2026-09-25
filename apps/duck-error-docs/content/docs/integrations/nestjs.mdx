@@ -56,7 +56,7 @@ import { throwAppError } from './errors'
 @Injectable()
 export class WidgetsService {
   async findOne(id: string) {
-    const widget = await this.db.widgets.findById(id)
+    const widget = await db.widgets.findById(id)
     if (!widget) throwAppError('NOT_FOUND', { resource: 'widget', id })
     return widget
   }
