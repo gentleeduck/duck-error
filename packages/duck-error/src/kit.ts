@@ -42,28 +42,34 @@ export namespace ErrorKit {
   }[Code<R>]
 
   /**
-   * No args for a bare code, else optional/required per Meta's required keys. Gated on the value's own Carries brand, not on Meta, since a bare code's Meta resolves to `{}` which anything would satisfy.
+   * Meta (required, optional, or absent per Meta's required keys) followed by an always-optional
+   * `cause`. Meta's own slot is gated on the value's own Carries brand, not on Meta, since a bare
+   * code's Meta resolves to `{}` which anything would satisfy. A bare code still reserves the meta
+   * slot, typed to accept only `undefined`, so cause stays in a fixed position the constructor can
+   * read without knowing which branch produced the call.
    * @example
    * ```ts
    * const REGISTRY = {
-   *   TEST_BARE: 500, // Args -> []
-   *   TEST_DETAIL: detail<{ field: string }>(400), // Args -> [meta: { field: string }]
-   *   TEST_DETAIL_NO_ARG: detail(400), // no <M> given -> Args -> [] (behaves like bare)
+   *   TEST_BARE: 500, // Args -> [meta?: undefined, cause?: unknown]
+   *   TEST_DETAIL: detail<{ field: string }>(400), // Args -> [meta: { field: string }, cause?: unknown]
+   *   TEST_DETAIL_NO_ARG: detail(400), // no <M> given -> [meta?: undefined, cause?: unknown] (behaves like bare)
    * } as const satisfies Record<string, number>
    * const TestError = createErrorKit('TestError', REGISTRY).ErrorClass
    *
    * new TestError('TEST_BARE') // ok, no second argument
+   * new TestError('TEST_BARE', undefined, dbError) // ok, cause with no meta
    * // @ts-expect-error a code that carries something cannot be raised without it
    * new TestError('TEST_DETAIL')
    * new TestError('TEST_DETAIL', { field: 'x' }) // ok
+   * new TestError('TEST_DETAIL', { field: 'x' }, dbError) // ok, meta and cause together
    * ```
    */
   export type Args<R extends Registry, C extends Code<R>> =
     R[C] extends Brand.Carries<any>
       ? [HasRequired<Meta<R, C>>] extends [never]
-        ? [meta?: Meta<R, C>]
-        : [meta: Meta<R, C>]
-      : []
+        ? [meta?: Meta<R, C>, cause?: unknown]
+        : [meta: Meta<R, C>, cause?: unknown]
+      : [meta?: undefined, cause?: unknown]
 }
 
 /**
@@ -90,7 +96,8 @@ export interface ErrorKit<R extends ErrorKit.Registry> {
     code: C,
     ...args: ErrorKit.Args<R, C>
   ) => KitError<R, C>
-  /** Constructs and returns (never throws) a typed instance. */
+  /** Constructs and returns (never throws) a typed instance. `Args`' trailing `cause` is set on the
+   *  instance when given, left unset (not `undefined`-but-present) when omitted. */
   fail<C extends ErrorKit.Code<R>>(code: C, ...args: ErrorKit.Args<R, C>): KitError<R, C>
   /** {@link ErrorKit.fail}, thrown rather than returned. */
   throwError<C extends ErrorKit.Code<R>>(code: C, ...args: ErrorKit.Args<R, C>): never
@@ -154,8 +161,12 @@ export function createErrorKit<const R extends ErrorKit.Registry, Name extends s
       // Total in fact (code is keyof R), but noUncheckedIndexedAccess can't see that through a generic R.
       this.status = registry[code] as number
       this.statusCode = this.status
-      const [meta] = args
+      // Meta is always slot 0 (undefined for a bare code) and cause always slot 1: fixed positions,
+      // because this constructor runs generically across every branch of Args and can't tell at
+      // runtime which branch a given call came from (the Carries brand is compile-time only).
+      const [meta, cause] = args as [Record<string, unknown> | undefined, unknown]
       this.meta = { ...meta }
+      if (cause !== undefined) this.cause = cause
     }
 
     toJSON(): { ok: false; error: { code: C; status: number } & Record<string, unknown> } {
