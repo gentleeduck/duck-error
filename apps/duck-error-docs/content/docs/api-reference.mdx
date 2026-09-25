@@ -17,9 +17,11 @@ Builds one error class from a registry literal. `name` becomes the class's runti
 is why two calls to `createErrorKit` -- even with identical registries -- produce classes that
 never satisfy each other's `instanceof`.
 
-Pass the registry `as const satisfies Record<string, number>`. Both matter: `as const` is what
-lets each code's status carry its brand (see below) into the returned type; `satisfies` checks
-every value is a plain number without widening the literal types away.
+Pass the registry `as const satisfies Record<string, number>`. `satisfies` is the load-bearing
+half -- it checks every value is number-compatible without erasing `detail`/`fault`'s branded
+return types (see below) the way an `: Record<string, number>` annotation would. `as const` is
+good practice for a bare code's literal status, but isn't what carries the brand -- `detail`/
+`fault` already return a branded type regardless.
 
 Returns an `ErrorKit<R>` object with seven members.
 

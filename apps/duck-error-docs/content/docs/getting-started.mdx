@@ -44,11 +44,13 @@ throwAppError('NOT_FOUND')
 // Uncaught AppError: NOT_FOUND
 ```
 
-`as const satisfies Record<string, number>` on the registry is not optional decoration --
-`as const` is what keeps each value a literal number type (rather than widening to `number`),
-which every later type in this walkthrough depends on. `satisfies` checks the values are all
-plain numbers without erasing those literal types the way an `: Record<string, number>`
-annotation would.
+`satisfies Record<string, number>` is the load-bearing half of that line: every code already
+resolves to a number-compatible type (`detail`/`fault` return a branded number; a bare code is a
+plain number), and `satisfies` checks that without erasing those specific types the way an
+`: Record<string, number>` annotation would. `as const` on top is good practice for a bare code's
+status -- it keeps `404` a literal `404` instead of widening to `number` -- but the compile-time
+argument checking later in this walkthrough comes from `detail`/`fault`'s own branded return
+types, not from `as const`.
 
 ## Step 2: a code that carries metadata
 
@@ -74,7 +76,7 @@ throwAppError('RATE_LIMITED', { retryAfter: 60 })
 // the second argument is now required, and its shape is checked:
 
 throwAppError('RATE_LIMITED')
-// Error: expected 1 argument, but got 0.
+// Error: Expected 2 arguments, but got 1.
 
 throwAppError('RATE_LIMITED', { retryAfter: 'soon' })
 // Error: Type 'string' is not assignable to type 'number'.

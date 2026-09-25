@@ -63,7 +63,7 @@ if (hasErrorCode(err, 'USER_NOT_FOUND')) {
 - **`hasErrorCode`** narrows by a `code` property instead of `instanceof`, so it still recognizes an
   instance from a duplicated copy of the package.
 - **`.toJSON()`** returns `{ ok: false, error: { code, status, ...meta } }` with every key matching
-  `/secret|password|passphrase|plaintext|token|hash|salt|signature|credential|private|apikey|api_key/i`
+  `/secret|password|passphrase|plaintext|token|hash|salt|signature|credential|private|otp|recovery|apikey|api_key/i`
   dropped at any depth — safe to send straight over the wire. `isSecretKey` and `scrubMeta` are
   exported standalone if you need the same redaction elsewhere.
 - **`.status`** and **`.statusCode`** (an alias, under the name Nest's base exception filter reads)
