@@ -87,12 +87,16 @@ if (hasErrorCode(err, 'USER_NOT_FOUND')) {
   exported standalone if you need the same redaction elsewhere.
 - **`.status`** and **`.statusCode`** (an alias, under the name Nest's base exception filter reads)
   come straight from the registry.
-- **A bare code takes no meta argument at all** — not `{}`, not `undefined`, nothing — so
-  `fail('SOME_BARE_CODE', { anything })` is a compile error rather than a silently-accepted value
-  that never reaches `.meta`.
+- **A bare code takes no meta shape at all** — `fail('SOME_BARE_CODE', { anything })` is a compile
+  error rather than a silently-accepted value that never reaches `.meta`. Its meta slot only ever
+  accepts `undefined`, which exists so the always-optional `cause` after it has a fixed position to
+  live in: `fail('SOME_BARE_CODE', undefined, causeError)`.
 - **A `detail(status)` that forgot its `<M>` fails the same way** — not `object`, nothing — so a
   registry entry declared without the type argument can't be given meta either, rather than
   silently accepting any shape at all.
+- **`fail` / `throwError` take an optional `cause` after meta** — `fail('USER_NOT_FOUND', { id },
+  driverError)` — set on the instance only when given, so an omitted cause never shows up as
+  `'cause' in err`.
 
 ## Design notes
 
