@@ -1,4 +1,4 @@
-import { createErrorKit, detail, type ErrorKit, fault, type KitError } from '@gentleduck/duck-error'
+import { createErrorKit, detail, type ErrorKit, fault, type KitError } from '@gentleduck/error'
 
 const REGISTRY = {
   NOT_FOUND: detail<{ resource: string; id: string }>(404),

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "@gentleduck/duck-error",
+  "name": "@gentleduck/error",
   "version": "1.0.0",
   "publishConfig": {
     "access": "public"
@@ -72,7 +72,6 @@
     "directory": "packages/duck-error"
   },
   "keywords": [
-    "duck-error",
     "errors",
     "error-handling",
     "typescript"

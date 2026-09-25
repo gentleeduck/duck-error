@@ -2,7 +2,7 @@
 
 ## Our Pledge
 
-We, as members, contributors, and leaders of the **@gentleduck/duck-error** project, pledge to make participation in our community a harassment-free experience for everyone.
+We, as members, contributors, and leaders of the **@gentleduck/error** project, pledge to make participation in our community a harassment-free experience for everyone.
 We are committed to fostering an environment where **everyone feels respected, safe, and welcome**, regardless of:
 
 * Age

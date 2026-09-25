@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 
 export const metadata = {
   title: 'duck-error Next.js example',
-  description: 'Route Handlers and a Server Action wired to @gentleduck/duck-error.',
+  description: 'Route Handlers and a Server Action wired to @gentleduck/error.',
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {

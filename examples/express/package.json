@@ -3,7 +3,7 @@
   "name": "duck-error-example-express",
   "private": true,
   "version": "0.0.0",
-  "description": "Runnable Express example wiring @gentleduck/duck-error through a terminal error-handling middleware.",
+  "description": "Runnable Express example wiring @gentleduck/error through a terminal error-handling middleware.",
   "type": "module",
   "scripts": {
     "dev": "bun run --watch src/index.ts",
@@ -12,7 +12,7 @@
     "clean": "rimraf dist .cache .turbo node_modules"
   },
   "dependencies": {
-    "@gentleduck/duck-error": "workspace:*",
+    "@gentleduck/error": "workspace:*",
     "express": "^5.1.0"
   },
   "devDependencies": {

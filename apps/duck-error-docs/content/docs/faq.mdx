@@ -111,7 +111,7 @@ description: Answers to the questions that come up most once you're past the qui
   <AccordionItem value="duplicate-package-instances">
     <AccordionTrigger>Why would instanceof ever fail against the right class?</AccordionTrigger>
     <AccordionContent className="text-muted-foreground">
-      If two different versions (or two separately-installed copies) of <code className="rounded bg-muted px-2 py-1">@gentleduck/duck-error</code> end
+      If two different versions (or two separately-installed copies) of <code className="rounded bg-muted px-2 py-1">@gentleduck/error</code> end
       up in the dependency tree — common in a monorepo or behind certain package manager hoisting
       strategies — an error constructed by one copy's <code className="rounded bg-muted px-2 py-1">createErrorKit</code> call
       fails <code className="rounded bg-muted px-2 py-1">instanceof</code> against a class from the

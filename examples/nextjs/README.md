@@ -1,6 +1,6 @@
 # duck-error Next.js example
 
-Route Handlers and a Server Action showing `@gentleduck/duck-error`, since Next.js has no single
+Route Handlers and a Server Action showing `@gentleduck/error`, since Next.js has no single
 centralized error hook the way Express, Fastify, Hono, and NestJS do. Full write-up:
 [gentleduck.org/duck-error/integrations/nextjs](https://gentleduck.org/duck-error/integrations/nextjs).
 

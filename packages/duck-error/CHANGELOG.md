@@ -1,4 +1,4 @@
-# @gentleduck/duck-error
+# @gentleduck/error
 
 ## 1.0.0
 
@@ -6,7 +6,7 @@
 
 - 8347f3f: First stable release.
   
-  `@gentleduck/duck-error` is a zero-dependency, registry-driven error kit for TypeScript: one
+  `@gentleduck/error` is a zero-dependency, registry-driven error kit for TypeScript: one
   `createErrorKit(name, registry)` call gives you a branded error class, exhaustive code-level
   type narrowing, and secret-safe JSON serialization, with no framework or runtime tie-in.
   

@@ -2,7 +2,7 @@
 
 ## Monorepo Structure
 
-- `packages/duck-error` - Core `@gentleduck/duck-error` package
+- `packages/duck-error` - Core `@gentleduck/error` package
 - `apps/duck-error-docs` - Docs content (MDX), consumed by the shared gentleduck.org docs site
 - `examples/` - Framework integration examples (NestJS, Express, Fastify, Hono, Next.js)
 - `tooling/` - Shared tooling configs

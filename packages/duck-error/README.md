@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="./public/logo-dark.svg" alt="@gentleduck/duck-error" width="120"/>
+  <img src="./public/logo-dark.svg" alt="@gentleduck/error" width="120"/>
 </p>
 
-<h1 align="center">@gentleduck/duck-error</h1>
+<h1 align="center">@gentleduck/error</h1>
 
 <p align="center">
   Typed, registry-driven error classes: branded codes, secret-safe <code>toJSON</code>, and a
@@ -16,9 +16,9 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@gentleduck/duck-error"><img src="https://img.shields.io/npm/v/@gentleduck/duck-error.svg" alt="npm"/></a>
-  <a href="https://www.npmjs.com/package/@gentleduck/duck-error"><img src="https://img.shields.io/npm/dm/@gentleduck/duck-error.svg" alt="downloads"/></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/npm/l/@gentleduck/duck-error.svg" alt="MIT"/></a>
+  <a href="https://www.npmjs.com/package/@gentleduck/error"><img src="https://img.shields.io/npm/v/@gentleduck/error.svg" alt="npm"/></a>
+  <a href="https://www.npmjs.com/package/@gentleduck/error"><img src="https://img.shields.io/npm/dm/@gentleduck/error.svg" alt="downloads"/></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/npm/l/@gentleduck/error.svg" alt="MIT"/></a>
 </p>
 
 ---
@@ -26,15 +26,15 @@
 ## Install
 
 ```bash
-npm install @gentleduck/duck-error
+npm install @gentleduck/error
 # or
-bun add @gentleduck/duck-error
+bun add @gentleduck/error
 ```
 
 ## Quick start
 
 ```typescript
-import { createErrorKit, detail, fault } from '@gentleduck/duck-error'
+import { createErrorKit, detail, fault } from '@gentleduck/error'
 
 // A registry: each code maps to a status. `detail<M>(status)` says the code also
 // carries a `meta` of shape M; `fault(status)` marks a code a store/adapter can

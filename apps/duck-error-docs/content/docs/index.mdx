@@ -5,7 +5,7 @@ description: Typed, registry-driven error classes for TypeScript. Branded codes,
 
 ## Overview
 
-`@gentleduck/duck-error` builds one error class per subsystem from a plain object literal: a
+`@gentleduck/error` builds one error class per subsystem from a plain object literal: a
 registry mapping string codes to HTTP status numbers. The class it returns is fully typed --
 which codes exist, what metadata each one carries, and whether metadata is required -- all
 inferred from the registry, with no separate type declaration to keep in sync.
@@ -23,11 +23,11 @@ inferred from the registry, with no separate type declaration to keep in sync.
     CLASS --> JSON["toJSON()\nsecret-safe response body"]`} />
 
 ```sh
-bun add @gentleduck/duck-error
+bun add @gentleduck/error
 ```
 
 ```typescript
-import { createErrorKit, detail, fault } from '@gentleduck/duck-error'
+import { createErrorKit, detail, fault } from '@gentleduck/error'
 
 const REGISTRY = {
   NOT_FOUND: 404,

@@ -1,18 +1,18 @@
 ---
 title: getting started
-description: Install @gentleduck/duck-error and build your first error kit, from a one-code registry to a typed, secret-safe error class.
+description: Install @gentleduck/error and build your first error kit, from a one-code registry to a typed, secret-safe error class.
 ---
 
 ## Install
 
 ```sh
-bun add @gentleduck/duck-error
+bun add @gentleduck/error
 ```
 
 ```sh
-npm install @gentleduck/duck-error
-pnpm add @gentleduck/duck-error
-yarn add @gentleduck/duck-error
+npm install @gentleduck/error
+pnpm add @gentleduck/error
+yarn add @gentleduck/error
 ```
 
 `typescript` is an optional peer dependency (`>=5.0.0`). The package has no runtime
@@ -27,7 +27,7 @@ Every kit starts from a plain object literal mapping string codes to HTTP status
 
 ```typescript
 // errors.ts
-import { createErrorKit } from '@gentleduck/duck-error'
+import { createErrorKit } from '@gentleduck/error'
 
 const REGISTRY = {
   NOT_FOUND: 404,
@@ -59,7 +59,7 @@ is a compile error. Most real codes carry something. Wrap the status in `detail`
 type parameter:
 
 ```typescript
-import { createErrorKit, detail } from '@gentleduck/duck-error'
+import { createErrorKit, detail } from '@gentleduck/error'
 
 const REGISTRY = {
   NOT_FOUND: 404,
@@ -90,7 +90,7 @@ the distinction exists so you can select on it later (see
 [Branded types](/duck-error/branded-types)).
 
 ```typescript
-import { createErrorKit, detail, fault } from '@gentleduck/duck-error'
+import { createErrorKit, detail, fault } from '@gentleduck/error'
 
 const REGISTRY = {
   NOT_FOUND: 404,

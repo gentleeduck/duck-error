@@ -1,6 +1,6 @@
 # duck-error Hono example
 
-Minimal Hono app (running on the Node adapter) showing `@gentleduck/duck-error` wired through
+Minimal Hono app (running on the Node adapter) showing `@gentleduck/error` wired through
 `app.onError`. Full write-up:
 [gentleduck.org/duck-error/integrations/hono](https://gentleduck.org/duck-error/integrations/hono).
 

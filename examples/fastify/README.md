@@ -1,6 +1,6 @@
 # duck-error Fastify example
 
-Minimal Fastify app showing `@gentleduck/duck-error` wired through `setErrorHandler`. Full write-up:
+Minimal Fastify app showing `@gentleduck/error` wired through `setErrorHandler`. Full write-up:
 [gentleduck.org/duck-error/integrations/fastify](https://gentleduck.org/duck-error/integrations/fastify).
 
 ## Run

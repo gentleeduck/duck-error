@@ -3,7 +3,7 @@
   "name": "duck-error-example-nextjs",
   "private": true,
   "version": "0.0.0",
-  "description": "Runnable Next.js example handling @gentleduck/duck-error in Route Handlers and a Server Action.",
+  "description": "Runnable Next.js example handling @gentleduck/error in Route Handlers and a Server Action.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,7 +12,7 @@
     "clean": "rimraf dist .cache .turbo node_modules .next"
   },
   "dependencies": {
-    "@gentleduck/duck-error": "workspace:*",
+    "@gentleduck/error": "workspace:*",
     "next": "^16.2.11",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"

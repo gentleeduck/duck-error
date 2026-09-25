@@ -28,7 +28,7 @@
       "name": "duck-error-example-express",
       "version": "0.0.0",
       "dependencies": {
-        "@gentleduck/duck-error": "workspace:*",
+        "@gentleduck/error": "workspace:*",
         "express": "^5.1.0",
       },
       "devDependencies": {
@@ -42,7 +42,7 @@
       "name": "duck-error-example-fastify",
       "version": "0.0.0",
       "dependencies": {
-        "@gentleduck/duck-error": "workspace:*",
+        "@gentleduck/error": "workspace:*",
         "fastify": "^5.7.0",
       },
       "devDependencies": {
@@ -55,7 +55,7 @@
       "name": "duck-error-example-hono",
       "version": "0.0.0",
       "dependencies": {
-        "@gentleduck/duck-error": "workspace:*",
+        "@gentleduck/error": "workspace:*",
         "@hono/node-server": "^1.19.6",
         "hono": "^4.12.34",
       },
@@ -69,7 +69,7 @@
       "name": "duck-error-example-nestjs",
       "version": "0.0.0",
       "dependencies": {
-        "@gentleduck/duck-error": "workspace:*",
+        "@gentleduck/error": "workspace:*",
         "@nestjs/common": "^11.1.6",
         "@nestjs/core": "^11.1.6",
         "@nestjs/platform-express": "^11.1.6",
@@ -88,7 +88,7 @@
       "name": "duck-error-example-nextjs",
       "version": "0.0.0",
       "dependencies": {
-        "@gentleduck/duck-error": "workspace:*",
+        "@gentleduck/error": "workspace:*",
         "next": "^16.2.11",
         "react": "^19.2.7",
         "react-dom": "^19.2.7",
@@ -102,8 +102,8 @@
       },
     },
     "packages/duck-error": {
-      "name": "@gentleduck/duck-error",
-      "version": "0.1.0",
+      "name": "@gentleduck/error",
+      "version": "1.0.0",
       "devDependencies": {
         "@gentleduck/tsdown-config": "workspace:*",
         "@gentleduck/typescript-config": "workspace:*",
@@ -287,7 +287,7 @@
 
     "@fastify/proxy-addr": ["@fastify/proxy-addr@5.1.1", "", { "dependencies": { "@fastify/forwarded": "^3.0.0", "ipaddr.js": "^2.1.0" } }, "sha512-zv07Y9GEuDsJPegZoDFd4SDWaZOW8N2pa0GSrYmKpId/tjt1Hgo3BjZBVjdVpfVrHaA+Qv5jawtS2O50J5xM9g=="],
 
-    "@gentleduck/duck-error": ["@gentleduck/duck-error@workspace:packages/duck-error"],
+    "@gentleduck/error": ["@gentleduck/error@workspace:packages/duck-error"],
 
     "@gentleduck/github": ["@gentleduck/github@workspace:tooling/github"],
 

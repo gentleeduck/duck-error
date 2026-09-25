@@ -1,6 +1,6 @@
 # duck-error Express example
 
-Minimal Express 5 app showing `@gentleduck/duck-error` wired through a terminal 4-arg error
+Minimal Express 5 app showing `@gentleduck/error` wired through a terminal 4-arg error
 middleware. Full write-up:
 [gentleduck.org/duck-error/integrations/express](https://gentleduck.org/duck-error/integrations/express).
 

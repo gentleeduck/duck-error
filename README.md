@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="./public/logo-dark.svg" alt="@gentleduck/duck-error" width="120"/>
+  <img src="./public/logo-dark.svg" alt="@gentleduck/error" width="120"/>
 </p>
 
-<h1 align="center">@gentleduck/duck-error</h1>
+<h1 align="center">@gentleduck/error</h1>
 
 <p align="center">
   Typed, registry-driven error classes for TypeScript. Branded codes, secret-safe serialization, framework-agnostic, zero dependencies.
@@ -16,8 +16,8 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@gentleduck/duck-error"><img src="https://img.shields.io/npm/v/@gentleduck/duck-error.svg?label=duck-error" alt="duck-error"/></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/npm/l/@gentleduck/duck-error.svg" alt="MIT"/></a>
+  <a href="https://www.npmjs.com/package/@gentleduck/error"><img src="https://img.shields.io/npm/v/@gentleduck/error.svg?label=error" alt="error"/></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/npm/l/@gentleduck/error.svg" alt="MIT"/></a>
 </p>
 
 ---
@@ -25,13 +25,13 @@
 ## Install
 
 ```sh
-bun add @gentleduck/duck-error
+bun add @gentleduck/error
 ```
 
 ## Quick start
 
 ```ts
-import { createErrorKit, fault, detail } from '@gentleduck/duck-error'
+import { createErrorKit, fault, detail } from '@gentleduck/error'
 
 const REGISTRY = {
   NOT_FOUND: 404,
@@ -52,7 +52,7 @@ throw new AppError('RATE_LIMITED', { retryAfter: 60 })
 
 | Path | Package | Role |
 | --- | --- | --- |
-| [`packages/duck-error`](packages/duck-error) | [`@gentleduck/duck-error`](https://www.npmjs.com/package/@gentleduck/duck-error) | Registry-driven error classes: branded codes, secret-safe `toJSON`, construct-or-throw kit |
+| [`packages/duck-error`](packages/duck-error) | [`@gentleduck/error`](https://www.npmjs.com/package/@gentleduck/error) | Registry-driven error classes: branded codes, secret-safe `toJSON`, construct-or-throw kit |
 
 ## Apps
 
@@ -64,7 +64,7 @@ throw new AppError('RATE_LIMITED', { retryAfter: 60 })
 
 | Path | Stack |
 | --- | --- |
-| [`examples/express`](examples/express) | Express error-handling middleware built on `@gentleduck/duck-error` |
+| [`examples/express`](examples/express) | Express error-handling middleware built on `@gentleduck/error` |
 | [`examples/fastify`](examples/fastify) | Fastify `setErrorHandler` integration |
 | [`examples/hono`](examples/hono) | Hono `onError` integration |
 | [`examples/nestjs`](examples/nestjs) | NestJS `ExceptionFilter` integration |
