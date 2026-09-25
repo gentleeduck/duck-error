@@ -5,6 +5,7 @@ const SECRET_KEY =
 const DEPTH_CAP = 8
 
 /**
+ * True when a key name looks like it might hold a secret — checked against a fixed pattern, not a per-registry allowlist.
  * @example
  * ```ts
  * isSecretKey('apiToken') // true — substring match, so it over-redacts rather than under-redacts

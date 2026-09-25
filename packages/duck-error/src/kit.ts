@@ -1,9 +1,12 @@
 import type { Brand } from './brand'
 import { scrubMeta } from './scrub'
 
+/** Type-level helpers derived from a registry: which codes exist, what each one carries, and the args its constructor demands. */
 export namespace ErrorKit {
+  /** A plain object literal mapping codes to HTTP status numbers — the whole contract a kit is built from. */
   export type Registry = Record<string, number>
 
+  /** Every key of a registry, narrowed to `string` — the set of codes a kit's methods accept. */
   export type Code<R extends Registry> = keyof R & string
 
   /**
@@ -80,6 +83,7 @@ export interface KitError<R extends ErrorKit.Registry, C extends ErrorKit.Code<R
   toJSON(): { ok: false; error: { code: C; status: number } & Record<string, unknown> }
 }
 
+/** What {@link createErrorKit} returns: the error class plus the construct/throw/narrow helpers built around it. */
 export interface ErrorKit<R extends ErrorKit.Registry> {
   /** For instanceof checks or subclassing — see createErrorKit for why it's never shared across kits. */
   readonly ErrorClass: new <C extends ErrorKit.Code<R> = ErrorKit.Code<R>>(
@@ -88,6 +92,7 @@ export interface ErrorKit<R extends ErrorKit.Registry> {
   ) => KitError<R, C>
   /** Constructs and returns (never throws) a typed instance. */
   fail<C extends ErrorKit.Code<R>>(code: C, ...args: ErrorKit.Args<R, C>): KitError<R, C>
+  /** {@link ErrorKit.fail}, thrown rather than returned. */
   throwError<C extends ErrorKit.Code<R>>(code: C, ...args: ErrorKit.Args<R, C>): never
   /** An already-typed error as it stands; anything else wrapped under the fallback code with the original on `cause`. */
   asError<C extends ErrorKit.Code<R>>(error: unknown, code: C, ...args: ErrorKit.Args<R, C>): KitError<R>
