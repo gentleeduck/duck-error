@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "@gentleduck/error-throws",
+  "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "A @Throws method decorator that classifies a driver refusal (SQLSTATE by default) and cause-chain into one of a duck-error kit's own Bare codes. Opt-in adapter, not part of core.",
+  "type": "module",
+  "sideEffects": false,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "!src/__tests__",
+    "CHANGELOG.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest run",
+    "check-types": "tsc -p tsconfig.json --noEmit --pretty false --skipLibCheck",
+    "lint": "biome lint --write ./",
+    "format": "biome format --write ./",
+    "clean": "rimraf dist .cache .turbo node_modules"
+  },
+  "dependencies": {
+    "@gentleduck/error": "workspace:*"
+  },
+  "devDependencies": {
+    "@gentleduck/tsdown-config": "workspace:*",
+    "@gentleduck/typescript-config": "workspace:*",
+    "@gentleduck/vitest-config": "workspace:*",
+    "@types/node": "^26.1.0",
+    "tsdown": "^0.22.3",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.9"
+  },
+  "peerDependencies": {
+    "typescript": ">=5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "GentleDuck (https://www.gentleduck.org)",
+  "license": "MIT",
+  "homepage": "https://gentleduck.org/duck-error",
+  "bugs": {
+    "url": "https://github.com/gentleeduck/duck-error/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gentleeduck/duck-error.git",
+    "directory": "packages/duck-error-throws"
+  },
+  "keywords": [
+    "errors",
+    "error-handling",
+    "typescript",
+    "decorator",
+    "sql"
+  ]
+}
