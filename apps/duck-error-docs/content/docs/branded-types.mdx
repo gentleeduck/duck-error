@@ -11,6 +11,20 @@ every code would look identical to every other at the type level, indistinguisha
 status. Branding attaches that extra information to the *type* of the number, invisibly, with
 zero runtime cost.
 
+The examples on this page share one registry:
+
+```typescript
+const REGISTRY = {
+  NOT_FOUND: 404,
+  RATE_LIMITED: detail<{ retryAfter: number }>(429),
+  STORAGE_FAILED: fault<{ cause?: string }>(500),
+} as const satisfies Record<string, number>
+
+const kit = createErrorKit('AppError', REGISTRY)
+const AppError = kit.ErrorClass
+const throwAppError = kit.throwError
+```
+
 ```typescript
 namespace Brand {
   type Carries<M extends object> = number & { readonly __carries: M }
@@ -82,12 +96,12 @@ codes (`NOT_FOUND: 404`) and codes whose metadata is present but entirely option
 safe to raise with zero context:
 
 ```typescript
-function quickFail(code: AppError.Bare) {
+function quickFail(code: ErrorKit.Bare<typeof REGISTRY>) {
   return throwAppError(code)
 }
 
 quickFail('NOT_FOUND')      // fine
-quickFail('RATE_LIMITED')   // Error: 'RATE_LIMITED' is not assignable to Bare
+quickFail('RATE_LIMITED')   // Error: 'RATE_LIMITED' is not assignable to Bare<typeof REGISTRY>
 ```
 
 ---
@@ -132,8 +146,12 @@ rejection, a business-rule refusal) will not succeed on retry, while a `fault`-b
 transient storage failure) might:
 
 ```typescript
-function isRetryable(err: AppError): err is AppError<AppError.Faults> {
-  return (Object.keys(FAULT_CODES) as AppError.Faults[]).includes(err.code as AppError.Faults)
+const FAULT_CODES: readonly ErrorKit.Faults<typeof REGISTRY>[] = ['STORAGE_FAILED']
+
+function isRetryable(
+  err: InstanceType<typeof AppError>,
+): err is InstanceType<typeof AppError> & { code: ErrorKit.Faults<typeof REGISTRY> } {
+  return (FAULT_CODES as readonly string[]).includes(err.code)
 }
 ```
 

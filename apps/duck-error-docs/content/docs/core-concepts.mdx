@@ -51,7 +51,7 @@ nothing to isolate from in that case.
 ## The message is always the code
 
 ```typescript
-new AppError('RATE_LIMITED').message === 'RATE_LIMITED'
+new AppError('RATE_LIMITED', { retryAfter: 60 }).message === 'RATE_LIMITED'
 ```
 
 There is no free-text message parameter. This is deliberate: a message is often where a
@@ -81,7 +81,7 @@ than stop.
 // fail: collect, don't stop
 const failures = fields
   .map((f) => (isValid(f) ? null : kit.fail('INVALID_FIELD', { field: f.name })))
-  .filter((e): e is AppError => e !== null)
+  .filter((e): e is InstanceType<typeof AppError> => e !== null)
 
 // throwError: stop now
 if (!widget) throwAppError('NOT_FOUND', { resource: 'widget', id })
