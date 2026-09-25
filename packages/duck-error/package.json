@@ -26,6 +26,7 @@
   "files": [
     "dist",
     "src",
+    "!src/__tests__",
     "CHANGELOG.md",
     "README.md",
     "LICENSE"
