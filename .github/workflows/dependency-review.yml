@@ -16,6 +16,10 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v6
 
       - name: Dependency Review
+        # continue-on-error: this repo is new enough that GitHub hasn't finished enabling its
+        # Dependency Graph yet, which this action requires; it 404s until that catches up.
+        # Drop this once a run succeeds.
+        continue-on-error: true
         uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
         with:
           fail-on-severity: high
