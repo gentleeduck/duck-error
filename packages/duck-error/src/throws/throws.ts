@@ -1,4 +1,4 @@
-import type { ErrorKit, KitError } from '@gentleduck/error'
+import type { ErrorKit, KitError } from '../kit'
 
 /** What a caller can make the database refuse, named for what it means rather than by its driver code. */
 export const REFUSAL_KINDS = ['conflict', 'duplicate', 'invalid', 'missing', 'timeout'] as const

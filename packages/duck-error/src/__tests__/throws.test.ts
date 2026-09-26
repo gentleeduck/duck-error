@@ -1,6 +1,7 @@
-import { createErrorKit, detail } from '@gentleduck/error'
 import { describe, expect, it } from 'vitest'
-import { createThrows, POSTGRES_REFUSALS } from '../throws'
+import { detail } from '../brand'
+import { createErrorKit } from '../kit'
+import { createThrows, POSTGRES_REFUSALS } from '../throws/throws'
 
 const USERS_ERRORS = {
   USERS_QUERY_FAILED: 500,

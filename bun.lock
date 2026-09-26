@@ -111,28 +111,6 @@
         "typescript",
       ],
     },
-    "packages/duck-error-throws": {
-      "name": "@gentleduck/error-throws",
-      "version": "0.1.0",
-      "dependencies": {
-        "@gentleduck/error": "workspace:*",
-      },
-      "devDependencies": {
-        "@gentleduck/tsdown-config": "workspace:*",
-        "@gentleduck/typescript-config": "workspace:*",
-        "@gentleduck/vitest-config": "workspace:*",
-        "@types/node": "^26.1.0",
-        "tsdown": "^0.22.3",
-        "typescript": "^7.0.2",
-        "vitest": "^4.1.9",
-      },
-      "peerDependencies": {
-        "typescript": ">=5.0.0",
-      },
-      "optionalPeers": [
-        "typescript",
-      ],
-    },
     "tooling/bash": {
       "name": "bash",
       "version": "0.0.0",
@@ -301,8 +279,6 @@
     "@fastify/proxy-addr": ["@fastify/proxy-addr@5.1.1", "", { "dependencies": { "@fastify/forwarded": "^3.0.0", "ipaddr.js": "^2.1.0" } }, "sha512-zv07Y9GEuDsJPegZoDFd4SDWaZOW8N2pa0GSrYmKpId/tjt1Hgo3BjZBVjdVpfVrHaA+Qv5jawtS2O50J5xM9g=="],
 
     "@gentleduck/error": ["@gentleduck/error@workspace:packages/duck-error"],
-
-    "@gentleduck/error-throws": ["@gentleduck/error-throws@workspace:packages/duck-error-throws"],
 
     "@gentleduck/github": ["@gentleduck/github@workspace:tooling/github"],
 
