@@ -2,7 +2,8 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "experimentalDecorators": true
   },
   "exclude": ["node_modules", "dist"],
   "extends": "@gentleduck/typescript-config/internal-package.json",

@@ -75,6 +75,34 @@ describe('toJSON', () => {
   })
 })
 
+describe('cause', () => {
+  it('fail attaches an optional cause after meta, for a code that carries meta', () => {
+    const original = new Error('driver exploded')
+    const err = kit.fail('TEST_FAULT', { adapter: 'redis' }, original)
+    expect(err.cause).toBe(original)
+  })
+
+  it('fail attaches a cause on a bare code, meta slot passed as undefined', () => {
+    const original = new Error('driver exploded')
+    const err = kit.fail('TEST_BARE', undefined, original)
+    expect(err.cause).toBe(original)
+  })
+
+  it('omitting cause leaves it unset, not undefined-but-present', () => {
+    expect('cause' in kit.fail('TEST_BARE')).toBe(false)
+  })
+
+  it('throwError propagates cause the same way as fail', () => {
+    const original = new Error('driver exploded')
+    try {
+      kit.throwError('TEST_FAULT', { adapter: 'redis' }, original)
+      expect.unreachable()
+    } catch (err) {
+      expect((err as Error).cause).toBe(original)
+    }
+  })
+})
+
 describe('fail, throwError, asError, rethrowError, hasErrorCode, metaOf', () => {
   it('fail constructs without throwing', () => {
     const err = kit.fail('TEST_BARE')
