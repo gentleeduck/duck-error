@@ -1,7 +1,7 @@
 /** Branded status types: what a code's number also says it carries. */
 export namespace Brand {
   /**
-   * Required, not optional — optional is satisfied by any plain number; plain key, not unique symbol, to avoid TS4023 in a consumer's own build.
+   * Required, not optional, since optional is satisfied by any plain number. Plain key, not unique symbol, to avoid TS4023 in a consumer's own build.
    * @template M - The meta shape the code carries.
    * @example
    * ```ts
@@ -39,20 +39,20 @@ export namespace Brand {
    * const REGISTRY = { WIDGET_NOT_FOUND: detail<{ widgetId: string }>(404) } as const satisfies Record<string, number>
    *
    * type Meta = Brand.MetaOf<(typeof REGISTRY)['WIDGET_NOT_FOUND']> // { widgetId: string }
-   * type Bare = Brand.MetaOf<500> // Record<never, never> — a plain status carries nothing
+   * type Bare = Brand.MetaOf<500> // Record<never, never>: a plain status carries nothing
    * ```
    */
   export type MetaOf<S> = S extends Carries<infer M> ? M : Record<never, never>
 }
 
 /**
- * M can't be inferred (no parameter uses it), so it defaults to never, not object — object would silently accept any meta shape.
+ * M can't be inferred (no parameter uses it), so it defaults to never, not object. Object would silently accept any meta shape.
  * @template M - The meta shape the code carries.
  * @example
  * ```ts
  * const REGISTRY = {
  *   WIDGET_NOT_FOUND: detail<{ widgetId: string }>(404), // meta required at the call site
- *   BAD_INPUT: detail(400), // no <M> given — behaves like a bare code, not an unchecked one
+ *   BAD_INPUT: detail(400), // no <M> given, behaves like a bare code, not an unchecked one
  * } as const satisfies Record<string, number>
  * ```
  */

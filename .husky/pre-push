@@ -7,3 +7,5 @@ bun run test
 bun run build
 
 echo "[husky] pre-push checks passed"
+
+bash scripts/sync-docs-to-duck-ui.sh

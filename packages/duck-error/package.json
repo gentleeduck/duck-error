@@ -21,6 +21,16 @@
         "types": "./dist/index.d.cts",
         "default": "./dist/index.cjs"
       }
+    },
+    "./throws": {
+      "import": {
+        "types": "./dist/throws.d.ts",
+        "default": "./dist/throws.js"
+      },
+      "require": {
+        "types": "./dist/throws.d.cts",
+        "default": "./dist/throws.cjs"
+      }
     }
   },
   "files": [

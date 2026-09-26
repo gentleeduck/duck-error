@@ -53,6 +53,7 @@
     "prepare": "husky",
     "check-types": "turbo run check-types",
     "docs:api": "bun run --cwd apps/duck-error-docs docs:api",
+    "sync-docs": "bash scripts/sync-docs-to-duck-ui.sh",
     "scorecard": "bash scripts/scorecard.sh",
     "scorecard:local": "bash scripts/scorecard.sh --local"
   },
