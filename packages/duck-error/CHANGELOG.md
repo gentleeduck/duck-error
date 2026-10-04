@@ -1,5 +1,11 @@
 # @gentleduck/error
 
+## 1.1.1
+
+### Patch Changes
+
+- 4484f6b: `POSTGRES_REFUSALS` classifies SQLSTATE `23P01` (`exclusion_violation`) as `duplicate`. A write refused by an `EXCLUDE` constraint now matches a `duplicate` rule, keyed by its constraint name like a unique violation, instead of falling through to the decorator's own code.
+
 ## 1.1.0
 
 ### Minor Changes
