@@ -98,6 +98,17 @@ describe('createThrows', () => {
     await expect(new Service().create()).rejects.toMatchObject({ code: 'USERS_EMAIL_TAKEN' })
   })
 
+  it('classifies an exclusion violation as duplicate, like a unique violation', async () => {
+    const { Throws } = createThrows(kit, POSTGRES_REFUSALS, { duplicate: { ex_users_no_overlap: 'USERS_EMAIL_TAKEN' } })
+    class Service {
+      @Throws('USERS_QUERY_FAILED')
+      async create(): Promise<void> {
+        throw pgError('23P01', 'ex_users_no_overlap')
+      }
+    }
+    await expect(new Service().create()).rejects.toMatchObject({ code: 'USERS_EMAIL_TAKEN' })
+  })
+
   it('renames a bare thrown message to one of the kit’s codes', async () => {
     const { Throws } = createThrows(kit, POSTGRES_REFUSALS, { rename: { 'not found': 'USERS_NOT_FOUND' } })
     class Service {

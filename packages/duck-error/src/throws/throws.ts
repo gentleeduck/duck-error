@@ -12,6 +12,7 @@ export const POSTGRES_REFUSALS: Readonly<Record<string, Refusal>> = {
   '23503': 'missing',
   '23505': 'duplicate',
   '23514': 'invalid',
+  '23P01': 'duplicate',
   '40001': 'conflict',
   '40P01': 'conflict',
   '55P03': 'conflict',
